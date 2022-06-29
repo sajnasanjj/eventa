@@ -26,41 +26,40 @@ function Header() {
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="Subnav">
                 
-                <Nav.Link>
-                              {user ? (<button className="btn Sub-nav" onClick={onLogout}>
-                                  <FaSignOutAlt /> Logout
-                              </button>): (
-                                      <Link to="/login" className="Sub-nav">
-                                          <FaSignInAlt /> Login
-                                      </Link>
-                              ) }
-                  
                
-                </Nav.Link>
               
+              
+              <NavDropdown title={user ? (user.name) : <h6> </h6>} id="basic-nav-dropdown">
+               
+                <NavDropdown.Item>
+                  <Link to="/checklist" className="Sub-nav">
+                    Checklist
+                  </Link>
+                </NavDropdown.Item>
+               
+                <NavDropdown.Item href="#action/3.3">
+                  Cart
+                </NavDropdown.Item>
+                <NavDropdown.Divider />
+                <NavDropdown.Item href="#action/3.4">Contact</NavDropdown.Item>
+              </NavDropdown>
               <Nav.Link>
                 <Link to="/profile" className="Sub-nav">
                   <FaUser /> Profile
                 </Link>
               </Nav.Link>
-              <NavDropdown title="Login" id="basic-nav-dropdown">
-                <Link to="/login" className="Sub-nav">
-                  <FaSignInAlt />
-                </Link>
-                <NavDropdown.Item>
-                  <Link to="/register" className="Sub-nav">
-                    Signup
+
+              <Nav.Link>
+                {user ? (<button className="Sub-nav" onClick={onLogout}>
+                  <FaSignOutAlt /> Logout
+                </button>) : (
+                  <Link to="/logins" className="Sub-nav">
+                     <FaSignInAlt/> Login
                   </Link>
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.2">
-                  Another action
-                </NavDropdown.Item>
-                <NavDropdown.Item href="#action/3.3">
-                  Something
-                </NavDropdown.Item>
-                <NavDropdown.Divider />
-                <NavDropdown.Item href="#action/3.4">Logout</NavDropdown.Item>
-              </NavDropdown>
+                )}
+
+
+              </Nav.Link>
             </Nav>
           </Navbar.Collapse>
         </Container>

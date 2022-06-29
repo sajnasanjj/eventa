@@ -1,14 +1,13 @@
 import * as React from 'react'
-import { useState} from 'react'
+import { useState,useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
-import {useNavigate} from 'react-router-dom'
-import { register, reset } from '../features/auth/authSlice'
-
+import {useNavigate,Link} from 'react-router-dom'
+import { register, reset } from '../../../features/auth/authSlice'
 import {toast} from 'react-toastify'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import Link from '@mui/material/Link'
+// import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -16,14 +15,9 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Container } from 'react-bootstrap'
 import { FaUser } from 'react-icons/fa'
-import { useEffect } from 'react'
-
-
-
 const theme = createTheme()
-
 export default function Register() {
-  const [formData,setFormData] =useState({
+  const [formData,setFormData] = useState({
     name:'',email:'',password:'',password2:''
   })
   const { name,email,password,password2 } = formData
@@ -34,10 +28,10 @@ export default function Register() {
   )
   useEffect(()=>{
      if(isError){
-      toast.error(message)
+      toast.error(message) 
      }   
      if(isSuccess || user){
-      navigate('/register')
+      navigate('/')
      }
      dispatch(reset())
   },[user,isError,isSuccess,message,navigate,dispatch])
@@ -57,7 +51,6 @@ export default function Register() {
         name, email, password
        }
        dispatch(register(userData))
-
     }
     const data = new FormData(event.currentTarget)
     console.log({
@@ -66,8 +59,6 @@ export default function Register() {
       password: data.get('password'),
     })
   }
-
-
   return (
     <Container>
       <ThemeProvider theme={theme}>
@@ -175,8 +166,8 @@ export default function Register() {
                 </Button>
                 <Grid container>
                   <Grid item>
-                    <Link href="#" variant="body2">
-                      {'Already have an Account? Login'}
+                    <Link to="/logins" sx={{cursor:"pointer"}}>
+                      Already have an Account? Login
                     </Link>
                   </Grid>
                 </Grid>

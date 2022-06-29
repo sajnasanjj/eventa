@@ -5,11 +5,11 @@ const colors = require('colors')
 const userSchema = mongoose.Schema({
     name:{
         type:String,
-    required:[true,'Please add a name']
+        required:[true,'Please add a name']
     },
     email:{
         type:String,
-        required:[true,'Please add an eamil'],
+        required:[true,'Please add an email'],
         unique:true
     },
     password:{

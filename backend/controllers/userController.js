@@ -4,10 +4,12 @@ const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
+    console.log("sajna",req.body);
     if (!name || !email || !password) {
         res.status(400)
         throw new Error('Please add all fields')
     }
+    
     const userExists = await User.findOne({ email })
     if (userExists) {
         res.status(400)
@@ -25,26 +27,32 @@ const registerUser = asyncHandler(async (req, res) => {
             _id: user.id,
             name: user.name,
             email: user.email,
-             token: generateToken(user._id)
+            token: generateToken(user._id)
 
         })
-    } else {
+    } 
+     else {
         res.status(400)
         throw new Error('Invalid User data')
     }
     res.json({ message: 'Register User' })
 })
 const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body
+    const { name,email, password } = req.body
+     console.log("details",req.body);
     const user = await User.findOne({ email })
     if (user && (await bcrypt.compare(password, user.password))) {
         res.json({
             _id: user.id,
-            name: user.name,
             email: user.email,
+            name: user.name,
             token: generateToken(user._id)
         })
-    } else {
+    }else if (!email || !password) {
+        res.status(400)
+        throw new Error('Please add all fields')
+    } 
+    else {
         res.status(400)
         throw new Error("Invalid email and password ")
     }

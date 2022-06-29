@@ -1,19 +1,18 @@
+
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit'
-import authService from './authService'
-const user = JSON.parse(localStorage.getItem('user'))
+import adminAuthService from './adminAuthService'
+const admin = JSON.parse(localStorage.getItem('admin'))
 const initialState = {
-    user:user ? user : null,
+    admin:admin ? admin : null,
     isError:false,
     isSuccess:false,
     isLoading:false,
     message:'',
 }
-
-
-export const register = createAsyncThunk('auth/register',async(userData,thunkAPI)=>{
+export const adminregister = createAsyncThunk('adminauth/adminregister',async(adminData,thunkAPI)=>{
     try{
-        console.log("userdata",userData);
-        return await authService.register(userData)
+        console.log("admindata",adminData);
+        return await adminAuthService.adminregister(adminData)
     }catch(error){
         const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -21,10 +20,10 @@ export const register = createAsyncThunk('auth/register',async(userData,thunkAPI
     }
 })
 
-export const login = createAsyncThunk('auth/login',async(userData,thunkAPI)=>{
+export const adminlogin = createAsyncThunk('adminauth/adminlogin',async(adminData,thunkAPI)=>{
     try{
-        console.log("userdaata",userData)
-        return await authService.login(userData)
+        console.log("admindaata",adminData)
+        return await adminAuthService.adminlogin(adminData)
     }catch(error){
         const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString()
         return thunkAPI.rejectWithValue(message)
@@ -33,11 +32,13 @@ export const login = createAsyncThunk('auth/login',async(userData,thunkAPI)=>{
 })
 
 
-export const logout = createAsyncThunk ('auth/logout',async()=>{
-         await authService.logout()
+export const adminlogout = createAsyncThunk ('adminauth/adminlogout',async()=>{
+         await adminAuthService.adminlogout()
 })
-export const authSlice = createSlice({
-    name:'auth',
+
+
+export const adminAuthSlice = createSlice({
+    name:'adminauth',
     initialState,
     reducers:{
         reset: (state) => {
@@ -49,40 +50,42 @@ export const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-        .addCase(register.pending,(state) => {
+          .addCase(adminregister.pending,(state) => {
             state.isLoading = true
         })
-        .addCase(register.fulfilled,(state,action)=>{
+        .addCase(adminregister.fulfilled,(state,action)=>{
             state.isLoading = false
             state.isSuccess = true
-            state.user = action.payload
+            state.admin = action.payload
 
         })
-        .addCase(register.rejected,(state,action)=>{
+        .addCase(adminregister.rejected,(state,action)=>{
             state.isLoading = false
             state.isError = true
             state.message = action.payload
-            state.user = null
+            state.admin = null
         })
-         .addCase(login.pending,(state) => {
+        .addCase(adminlogin.pending,(state) => {
             state.isLoading = true
         })
-        .addCase(login.fulfilled,(state,action)=>{
+        .addCase(adminlogin.fulfilled,(state,action)=>{
             state.isLoading = false
             state.isSuccess = true
-            state.user = action.payload
+            state.admin = action.payload
 
         })
-        .addCase(login.rejected,(state,action)=>{
+        .addCase(adminlogin.rejected,(state,action)=>{
             state.isLoading = false
             state.isError = true
             state.message = action.payload
-            state.user = null
+            state.admin = null
         })
-        .addCase(logout.fulfilled,(state)=> {
-            state.user = null
+        .addCase(adminlogout.fulfilled, (state)=> {
+            state.admin= null
         })
+        
     }
 })
-export const { reset } = authSlice.actions
-export default authSlice.reducer
+
+export const { reset } = adminAuthSlice.actions
+export default adminAuthSlice.reducer

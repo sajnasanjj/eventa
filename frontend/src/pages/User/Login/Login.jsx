@@ -3,7 +3,7 @@ import { useState,useEffect} from 'react'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
 import TextField from '@mui/material/TextField'
-import Link from '@mui/material/Link'
+// import Link from '@mui/material/Link'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
@@ -12,17 +12,13 @@ import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Container } from 'react-bootstrap'
 import { FaUser } from 'react-icons/fa'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import { login, reset } from '../features/auth/authSlice'
-
+import { useNavigate,Link } from 'react-router-dom'
+import { login, reset } from '../../../features/auth/authSlice'
 import { toast } from 'react-toastify'
-
 const theme = createTheme()
-
 export default function Login() {
   const [formData, setFormData] = useState({
-    email: '',
-    password: '',
+    email : '',password : ''
   })
   const { email, password} = formData
   const navigate = useNavigate()
@@ -35,7 +31,7 @@ export default function Login() {
       toast.error(message)
     }
     if (isSuccess || user) {
-      navigate('/login')
+      navigate('/')
     }
     dispatch(reset())
   }, [user, isError, isSuccess, message, navigate, dispatch])
@@ -45,7 +41,7 @@ export default function Login() {
       [event.target.name]: event.target.value,
     }))
   }
-  const handleSubmit = (event) => {
+  const onSubmit = (event) => {
     event.preventDefault()
     const userData ={
       email,
@@ -58,7 +54,7 @@ export default function Login() {
       password: data.get('password'),
     })
   }
- 
+  console.log("asdfghj",email)
 
   return (
     <Container>
@@ -105,7 +101,7 @@ export default function Login() {
               <Box
                 component="form"
                 noValidate
-                onSubmit={handleSubmit}
+                onSubmit={onSubmit}
                 sx={{ mt: 1 }}
               >
                 <TextField
@@ -142,13 +138,9 @@ export default function Login() {
                   Login
                 </Button>
                 <Grid container>
-                  <Grid item xs>
-                    <Link href="#" variant="body2">
-                      Forgot password?
-                    </Link>
-                  </Grid>
+                  
                   <Grid item>
-                    <Link href="#" variant="body2">
+                    <Link to="/register" variant="body2">
                       {"Don't have an accout ? Signup"}
                     </Link>
                   </Grid>

@@ -11,14 +11,12 @@ mongoose.connect(process.env.MONGO_URI,
     console.log(`Connected DB`)
 )
 
-app.get('/',(req,res)=>{
-    res.send("Your db connected well")
-})
+
 app.use(express.json());
 app.use(express.urlencoded({extended:false}))
 
 app.use('/', require('./routes/userRoutes'))
-app.use('/admin',require('./routes/adminRoutes'))
+app.use('/adminlogin',require('./routes/adminRoutes'))
 
 
 app.use(errorHandler)
