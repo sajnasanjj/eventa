@@ -16,7 +16,7 @@ const registerUser = asyncHandler(async (req, res) => {
         throw new Error('User already Exists')
     }
     const salt = await bcrypt.genSalt(10)
-    const hashedPassword = await bcrypt.hash(password, salt)
+    const hashedPassword = await bcrypt.hash(password,salt)
     const user = await User.create({
         name,
         email,
@@ -41,7 +41,7 @@ const loginUser = asyncHandler(async (req, res) => {
     const { name,email, password } = req.body
      console.log("details",req.body);
     const user = await User.findOne({ email })
-    if (user && (await bcrypt.compare(password, user.password))) {
+    if (user && (await bcrypt.compare(password,user.password))) {
         res.json({
             _id: user.id,
             email: user.email,
@@ -58,16 +58,13 @@ const loginUser = asyncHandler(async (req, res) => {
     }
     res.json({ message: 'Login User' })
 })
-const getMe = asyncHandler(async (req, res) => {
-    const {_id,name,email} = await User.findById(req.user.id)
+const getUser = asyncHandler(async (req, res) => {
+    
+     const user = await User.find({})
+  res.status(200).json(user);
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email,
-    })
-    res.json({ message: 'User data display' })
-})
+});
+
 const generateToken = (id) => {
     return jwt.sign ({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d' ,
@@ -76,5 +73,5 @@ const generateToken = (id) => {
     module.exports = {
         registerUser,
         loginUser,
-        getMe
+        getUser
     }

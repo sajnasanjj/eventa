@@ -1,0 +1,61 @@
+.datatable{
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+        box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+        padding: 20px;
+        margin-right: 40px;
+        height:300px;
+
+        .datatableTitle{
+
+           margin: 5px;
+           padding: 5px;
+           cursor: pointer;
+          
+           
+
+        }
+        .cellWithTable{
+            display: flex;
+            align-items:center;
+            .cellImg{
+                border-radius: 50%;
+                width:32px;
+                height:32px;
+                object-fit:cover;
+                margin-right:20px;
+            }
+        }
+        .cellWithStatus{
+            padding:5px;
+            border-radius: 5px;
+
+            &.block{
+                background-color: rgba(0,128,0,0.05);
+                color: #f80f0f;
+            }
+            &.unblock{
+                background-color: rgba(0,128,0,0.05);
+                color: rgb(6, 89, 16);
+            }
+        }
+        .cellAction{
+            display: flex;
+            align-items: center;
+            margin-right: 20px;
+            .viewButton{
+                padding: 2px 5px;
+                border-radius: 5px;
+                color: darkblue;
+                border: 1px solid;
+            }
+                        .deleteButton {
+                            padding: 2px 5px;
+                            border-radius: 5px;
+                            color: rgb(254, 6, 6);
+                            border: 1px solid;
+                            .deleteicon{
+                                font-size: 16px;
+                            }
+                        }
+        }
+}

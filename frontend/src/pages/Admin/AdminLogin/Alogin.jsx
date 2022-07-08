@@ -14,6 +14,8 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { adminlogin, reset } from '../../../features/auth/adminAuthSlice'
 import { toast } from 'react-toastify'
+import AdminHeader from '../../../components/Admin/AdminNavbar/AdminHeader'
+
 const theme = createTheme()
 export default function Alogin() {
     const [formData, setFormData] = useState({
@@ -31,7 +33,7 @@ export default function Alogin() {
             toast.error(message)
         }
         if (isSuccess || admin) {
-            navigate('/dashboard')
+            navigate('/adminlogin/dashboard')
         }
         dispatch(reset())
     }, [admin, isError, isSuccess, message, navigate, dispatch])
@@ -56,7 +58,10 @@ export default function Alogin() {
         console.log("addddd", email)
     }
     return (
+       
+     
         <Container>
+            <AdminHeader />
             <ThemeProvider theme={theme}>
                 <Grid container component="main" md={11} sx={{ height: '70vh',width: '100%',marginTop:"40px" }}>
                     <CssBaseline />
@@ -122,6 +127,7 @@ export default function Alogin() {
                                     type="submit"
                                     fullWidth
                                     variant="contained"
+                                    
                                     sx={{ mt: 3, mb: 2 }}
                                 >
                                     Login

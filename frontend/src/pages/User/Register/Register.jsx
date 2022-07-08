@@ -3,6 +3,7 @@ import { useState,useEffect} from 'react'
 import {useSelector,useDispatch} from 'react-redux'
 import {useNavigate,Link} from 'react-router-dom'
 import { register, reset } from '../../../features/auth/authSlice'
+import Spinner from '../../../components/Spinner/Spinner'
 import {toast} from 'react-toastify'
 import Button from '@mui/material/Button'
 import CssBaseline from '@mui/material/CssBaseline'
@@ -15,6 +16,7 @@ import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Container } from 'react-bootstrap'
 import { FaUser } from 'react-icons/fa'
+
 const theme = createTheme()
 export default function Register() {
   const [formData,setFormData] = useState({
@@ -23,7 +25,7 @@ export default function Register() {
   const { name,email,password,password2 } = formData
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {user, isError, isSuccess, message} = useSelector(
+  const {user,isLoading, isError, isSuccess, message} = useSelector(
     (state) => state.auth
   )
   useEffect(()=>{
@@ -34,7 +36,7 @@ export default function Register() {
       navigate('/')
      }
      dispatch(reset())
-  },[user,isError,isSuccess,message,navigate,dispatch])
+  },[user,isLoading,isError,isSuccess,message,navigate,dispatch])
   const onChange = (event) => {
      setFormData((prevState) => ({
       ...prevState,
@@ -59,10 +61,13 @@ export default function Register() {
       password: data.get('password'),
     })
   }
+  if(isLoading){
+    return <Spinner/>
+  }
   return (
     <Container>
       <ThemeProvider theme={theme}>
-        <Grid container component="main" sx={{ height: '90vh' }}>
+        <Grid container component="main" sx={{ height: '60vh',padding:'70px 140px', }}>
           <CssBaseline />
           <Grid
             item

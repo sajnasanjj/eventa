@@ -2,6 +2,9 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const Admin = require('../models/adminModel')
+const User = require('../models/userModel')
+
+
 const registerAdmin = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
     console.log("sajna",req.body);
@@ -9,7 +12,6 @@ const registerAdmin = asyncHandler(async (req, res) => {
         res.status(400)
         throw new Error('Please add all fields')
     }
-    
     const adminExists = await Admin.findOne({ email })
     if (adminExists) {
         res.status(400)
@@ -58,16 +60,13 @@ const loginAdmin = asyncHandler(async (req, res) => {
     }
     res.json({ message: 'Login admin' })
 })
-const getMe = asyncHandler(async (req, res) => {
-    const {_id,name,email} = await Admin.findById(req.admin.id)
 
-    res.status(200).json({
-        id: _id,
-        name,
-        email,
-    })
-    res.json({ message: 'Admin data display' })
+const getUser = asyncHandler(async (req, res) => {
+    const user = await User.find({})
+    res.status(200).json(user)
+    res.json({ message: 'User data display to admin' })
 })
+
 const generateToken = (id) => {
     return jwt.sign ({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d' ,
@@ -76,5 +75,5 @@ const generateToken = (id) => {
     module.exports = {
         registerAdmin,
         loginAdmin,
-        getMe
+        getUser,
     }

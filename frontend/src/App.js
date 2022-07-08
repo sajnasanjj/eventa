@@ -1,44 +1,51 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-// import Home from './pages/Home'
-import Login from './pages/User/Login/Login'
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import Register from './pages/User/Register/Register'
-import Header from './components/Header/Header'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import Profile from './pages/User/Profile/Profile'
-import Alogin from './pages/Admin/AdminLogin/Alogin'
-import Dashboard from './pages/Admin/AdminDashboard/Dashboard'
-// import Error from './components/404/Error';
-import Carousal from './components/Carousal/Carousal';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 
+import Login from './pages/User/Login/Login'
+import Register from './pages/User/Register/Register'
+import Profile from './pages/User/Profile/Profile'
+// import Error from './components/404/Error';
+
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Alogin from './pages/Admin/AdminLogin/Alogin'
+import './App.css'
+import AdminHome from './pages/Admin/AdminHome/AdminHome'
+import UserDetails from './pages/Admin/UserDetails/UserDetails'
+import HomePage from './pages/User/HomePage/HomePage';
+import Add from './pages/Admin/Add/Add'
+import {Inputs} from './eventSource'
+import SingleUser from './pages/Admin/SingleUser/SingleUser'
+// react.lazy
 function App() {
   return (
-    <>
-      <div>
-        <Router>
-             <Header />
-             
-             
-          <Routes>
-            <Route path="/" element={<Carousal/>} />
-                  
+<>
+<Router>
+       
+      <Routes>
+            <Route path ="/adminlogin" >
+                  <Route index element={<Alogin/>}/>
+                  <Route path="dashboard" element={<AdminHome/>}/>
+                  <Route path="users" >
+                        <Route index element={<UserDetails/>}/>
+                        <Route path=":userId" element={<SingleUser/>}/>
+                        <Route path="add" element={<Add inputs={Inputs}/>}  />
+                        </Route>
+            </Route>
+      </Routes>
+        
+      <Routes>
+            <Route exact path="/" element={<HomePage/>}/>
             <Route path="/logins" element={<Login/>} />
             <Route path="register" element={<Register />} />
             <Route path="profile" element={<Profile />} />
-
-          </Routes>
-
-          <Routes>
-            <Route path="/adminlogin" element={<Alogin/>} />
-            <Route path="/dashboard" element={<Dashboard/>} />
-
-          </Routes>
-        </Router>
-        <ToastContainer />
-      </div>
-    </>
-  )
+      </Routes>
+</Router>
+    
+      
+             
+      
+      <ToastContainer />
+       </>
+      )
 }
-
-export default App
+      export default App

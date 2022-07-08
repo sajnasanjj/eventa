@@ -22,7 +22,7 @@ function Error() {
 
                               <p>the page you are looking for not avaible!</p>
 
-                              <Link to= "/">Go to Home</Link>
+                              <Link to="/">Go to Home</Link>
                           </div>
                       </div>
                   </div>
