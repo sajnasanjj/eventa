@@ -4,15 +4,11 @@
         padding: 20px;
         margin-right: 40px;
         height:300px;
-
         .datatableTitle{
-
            margin: 5px;
            padding: 5px;
            cursor: pointer;
-          
-           
-
+           text-decoration: none;
         }
         .cellWithTable{
             display: flex;
@@ -28,7 +24,6 @@
         .cellWithStatus{
             padding:5px;
             border-radius: 5px;
-
             &.block{
                 background-color: rgba(0,128,0,0.05);
                 color: #f80f0f;

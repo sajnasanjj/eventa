@@ -1,94 +1,94 @@
 
-.top{
-    flex:4;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    .head{
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    
-    margin: 20px;
-    padding: 10px;
-}
-.bottom {
-    margin: 20px;
-    padding: 10px;
-    display: flex;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+// .top{
+//     flex:4;
+//     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+//     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//     .head{
+//     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+//     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;    
+//     margin: 20px;
+//     padding: 10px;
+// }
+// .bottom {
+//     margin: 20px;
+//     padding: 10px;
+//     display: flex;
+//     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+//     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-    .left {
-    flex: 1;
-    margin: 10px;
-    padding: 20px;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//     .left {
+//     flex: 1;
+//     margin: 10px;
+//     padding: 20px;
+//     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+//     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
    
-    }
+//     }
 
-    .right {
-    flex: 2;
-    margin: 10px;
-    padding: 10px;
-    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+//     .right {
+//     flex: 2;
+//     margin: 10px;
+//     padding: 10px;
+//     -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+//     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
-.form {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 10px;
-        gap: 20px;
-        justify-content: space-between;
+// .form {
+//         display: flex;
+//         flex-wrap: wrap;
+//         margin: 10px;
+//         gap: 20px;
+//         justify-content: space-between;
 
-        .formInput {
+//         .formInput {
            
-            width: 50%;
+//             width: 50%;
 
-        .img {
-                width: 300px;
-                height: 150px;
-            }
-            label {
-                display: flex;
-                align-items: center;
-                gap: 10px;
+//         .img {
+//                 width: 300px;
+//                 height: 150px;
+//             }
+//             label {
+//                 display: flex;
+//                 align-items: center;
+//                 gap: 10px;
 
-                .icon {
-                    cursor: pointer;
-                    &:hover{
-                        background-color: grey;
-                        color: white;
-                        padding: 5px;
+//                 .icon {
+//                     cursor: pointer;
+//                     &:hover{
+//                         background-color: grey;
+//                         color: white;
+//                         padding: 5px;
                      
-                    }
-                }
-            }
+//                     }
+//                 }
+//             }
 
-            input {
-                padding: 5px;
-                border: none;
-                border-bottom: 1px solid gray;
-            }
-        }
-    }
+//             input {
+//                 padding: 5px;
+//                 border: none;
+//                 border-bottom: 1px solid gray;
+//             }
+//         }
+//     }
 
-    .button {
-        margin: 10px;
-        border-color: black;
-        background-color: white;
-        color: black;
+//     .button {
+//         margin: 10px;
+//         border-color: black;
+//         background-color: white;
+//         color: black;
 
-        &:hover {
-            background-color: black;
-            color: white;
-        }
-    }
+//         &:hover {
+//             background-color: black;
+//             color: white;
+//         }
+//     }
 
 
 
-    }
-}
-}
+//     }
+// }
+// }
 
 
 

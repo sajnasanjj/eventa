@@ -6,6 +6,7 @@ import {
   TrendingUp,
   Group,
   GroupAddSharp,
+  PhotoAlbum,
 } from '@material-ui/icons'
 import { Link } from 'react-router-dom'
 
@@ -32,6 +33,15 @@ function Sidebar() {
               <LineStyle className="sidebarIcon" />
               <Link to="/adminlogin/users/add" style={{ textDecoration: "none", color: 'black' }}>Add</Link>
             </li>
+            <li className="sidebarListItem">
+              <PhotoAlbum className="sidebarIcon" />
+              <Link to="/adminlogin/banner" style={{ textDecoration: "none", color: 'black' }}>Banner</Link>
+            </li>
+            <li className="sidebarListItem">
+              <PhotoAlbum className="sidebarIcon" />
+              <Link to="/adminlogin/gallary" style={{ textDecoration: "none", color: 'black' }}>Gallary</Link>
+            </li>
+
             <li className="sidebarListItem">
               <GroupAddSharp className="sidebarIcon" />{' '}
               <Link to="/adminlogin/users" style={{ textDecoration: "none", color: 'black' }}>Users</Link>

@@ -2,9 +2,9 @@ const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
 const User = require('../models/userModel')
+const Banner = require('../models/admin/bannerModel')
 const registerUser = asyncHandler(async (req, res) => {
     const { name, email, password } = req.body
-    console.log("sajna",req.body);
     if (!name || !email || !password) {
         res.status(400)
         throw new Error('Please add all fields')
@@ -59,11 +59,15 @@ const loginUser = asyncHandler(async (req, res) => {
     res.json({ message: 'Login User' })
 })
 const getUser = asyncHandler(async (req, res) => {
-    
      const user = await User.find({})
-  res.status(200).json(user);
+     res.status(200).json(user);
 
 });
+const getBanner = asyncHandler(async (req,res)=>{
+    const banner = await Banner.find({})
+    res.status(200).json(banner);
+})
+
 
 const generateToken = (id) => {
     return jwt.sign ({ id }, process.env.JWT_SECRET, {
@@ -73,5 +77,6 @@ const generateToken = (id) => {
     module.exports = {
         registerUser,
         loginUser,
-        getUser
+        getUser,
+        getBanner
     }
