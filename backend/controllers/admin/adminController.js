@@ -1,10 +1,10 @@
 const jwt = require('jsonwebtoken')
 const bcrypt = require('bcryptjs')
 const asyncHandler = require('express-async-handler')
-const Admin = require('../models/adminModel')
-const Banner = require('../models/admin/bannerModel')
-const Gallary = require('../models/admin/gallaryModel')
-const User = require('../models/userModel')
+const Admin = require('../../models/adminModel')
+const Banner = require('../../models/admin/bannerModel')
+const Gallary = require('../../models/admin/gallaryModel')
+const User = require('../../models/userModel')
 
 
 const registerAdmin = asyncHandler(async (req, res) => {
@@ -99,7 +99,7 @@ const editBanner = asyncHandler(async (req,res)=> {
         };
     const banner =await Banner.findByIdAndUpdate(bannerId,newBannerData,{
         new:true,
-        runValidators : true,
+        // runValidators : true,
         useFindAndModify:false,
     })
     res.status(200).json({
@@ -202,5 +202,5 @@ const generateToken = (id) => {
         getUser,
         getBanner,getBannerDetails,editBanner,deleteBanner,
         getGallary,getGallaryDetails,editGallary,deleteGallary,
-
+        
     }

@@ -32,7 +32,7 @@ export default function Login() {
       toast.error(message)
     }
     if (isSuccess || user) {
-      navigate('/')
+      navigate('/photos')
     }
     dispatch(reset())
   }, [user, isLoading, isError, isSuccess, message, navigate, dispatch])

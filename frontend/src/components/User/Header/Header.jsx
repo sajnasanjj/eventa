@@ -1,5 +1,5 @@
 // import { FaSignInAlt, FaUser, FaSignOutAlt } from 'react-icons/fa'
-import './Header.css'
+import './Header.scss'
 import { Link,useNavigate } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { logout, reset } from '../../../features/auth/authSlice'
@@ -44,10 +44,16 @@ function Header() {
         <AppBar position="static" sx={{backgroundColor:'black'}}>
           <Toolbar>
            
+          
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'white'}}>
               <Link to="/" className="Logo">
                 Event{''}
               </Link>
+            </Typography>
+            <Typography>
+            <Link to = "/about" className='About'>About</Link>
+              <Link to="/about" className='About'>Contact</Link>
+
             </Typography>
             {auth && (
               <div>

@@ -17,7 +17,7 @@ function EditBanner() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getBanner())
-    });
+    },[dispatch]);
     return (
         <>
             <AdminHeader />
@@ -30,23 +30,18 @@ function EditBanner() {
                     <div className="bottom">
                         <div className="right">
                             <form className="form">
-                                <label htmlFor="file">Image :<PhotoCamera className="icon" /></label>
+                                {/* <label htmlFor="file">Image :<PhotoCamera className="icon" /></label> */}
                                 <input type="file" name="AddImage" id="file" onChange={e => setFile(e.target.files[0])} style={{ display: "none" }} />
 
 
-                                {banners.map((input) => {
-                                    return (
-                                        <>
+                               
+                                  
                                             <div className="formInput" >
-                                                <img src={file ? URL.createObjectURL(file) : input.image} alt="" className="img" />
+                                                <img src={file ? URL.createObjectURL(file) : banners.image} alt="" className="img" />
                                                 <input type="text" name="name" id="name" placeholder="Heading" required />
 
                                             </div>
-                                            <div className="formInput">
-                                            </div>
-                                        </>
-                                    )
-                                })}
+                                       
                                 <Button className="button btn-sm">Submit</Button>
 
                             </form>

@@ -1,5 +1,5 @@
 const express = require('express');
-const { editBanner,deleteBanner,getGallaryDetails } = require('../controllers/adminController');
+const { editBanner,deleteBanner,getGallaryDetails } = require('../controllers/admin/adminController');
 
 const router = express.Router();
 const { registerUser,loginUser,getUser,getBanner} = require('../controllers/userController');

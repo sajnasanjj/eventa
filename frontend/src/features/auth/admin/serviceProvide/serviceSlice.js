@@ -1,9 +1,9 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
-import bannerService from './bannerService';
+import serviceService from './serviceService';
 
 
 const initialState ={
-    banners:[],
+    services:[],
     isError:false,
     isSuccess:false,
     isLoading:false,
@@ -12,10 +12,10 @@ const initialState ={
     message:''
 
 }
-export const getBanner = createAsyncThunk('bannerthunk',async(data,thunkAPI)=>{
+export const getService = createAsyncThunk('servicethunk',async(data,thunkAPI)=>{
     try{
         console.log("yupppp")
-            return await bannerService.getBanner();
+            return await serviceService.getService();
 
     }catch(error){
             const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
@@ -23,29 +23,29 @@ export const getBanner = createAsyncThunk('bannerthunk',async(data,thunkAPI)=>{
 
     }
 });
-export const addBanner = createAsyncThunk('addbannerThunk/addBanner',async(bannerData,thunkAPI)=>{
+export const addService = createAsyncThunk('addserviceThunk/addService',async(serviceData,thunkAPI)=>{
     try{
         console.log("addeddd")
-        return await bannerService.addBanner(bannerData);
+        return await serviceService.addService(serviceData);
     }catch(error){
             const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
             return thunkAPI.rejectWithValue(message)
     }
 })
-export const editBanner = createAsyncThunk('editbanner',async(id,thunkAPI)=>{
+export const editService = createAsyncThunk('editservice',async(id,thunkAPI)=>{
     try{
         console.log("Its going to update")
-        return await bannerService.editBanner(id);
+        return await serviceService.editService(id);
     }catch(error){
             const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
             return thunkAPI.rejectWithValue(message)
     }
 })
-export const deleteBanner = createAsyncThunk('deleteBanner',async(bannerId,thunkAPI)=>{
+export const deleteService = createAsyncThunk('deleteService',async(serviceId,thunkAPI)=>{
     try{
-        console.log("delte",bannerId)
+        console.log("delte",serviceId)
 
-        return await bannerService.deleteBanner(bannerId);
+        return await serviceService.deleteService(serviceId);
 
     }catch(error){
             const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
@@ -53,8 +53,8 @@ export const deleteBanner = createAsyncThunk('deleteBanner',async(bannerId,thunk
 
     }
 })
-const bannerSlice = createSlice({
-    name:'get-all-banner',
+const serviceSlice = createSlice({
+    name:'allservice',
     initialState,
     reducers:{
         reset:(state) => {
@@ -66,34 +66,33 @@ const bannerSlice = createSlice({
     },
     extraReducers:(builder)=>{
         builder
-        .addCase(getBanner.pending,(state)=>{
+        .addCase(getService.pending,(state)=>{
             state.isLoading = true;
         })
-        .addCase(getBanner.fulfilled,(state,action)=>{
+        .addCase(getService.fulfilled,(state,action)=>{
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
-            state.banners = action.payload;
+            state.services = action.payload;
         })
-        .addCase(getBanner.rejected,(state,action)=>{
+        .addCase(getService.rejected,(state,action)=>{
             state.isSuccess = false;
             state.isError = true;
             state.message = action.payload;
-            state.banners = null
+            state.services = null
 
         })
 
-
-        .addCase(editBanner.pending,(state)=>{
+        .addCase(editService.pending,(state)=>{
             state.isLoading = true;
             state.isModified =false;
         })
-        .addCase(editBanner.fulfilled,(state)=>{
+        .addCase(editService.fulfilled,(state)=>{
             state.isLoading = false;
             state.isError = false;
             state.isModified = true;
         })
-        .addCase(editBanner.rejected,(state,action)=>{
+        .addCase(editService.rejected,(state,action)=>{
             state.isModified = false;
             state.isError = true;
             state.message = action.payload;
@@ -101,32 +100,32 @@ const bannerSlice = createSlice({
         })
 
 
-        .addCase(addBanner.pending,(state)=>{
+        .addCase(addService.pending,(state)=>{
             state.isLoading = true;
         })
-        .addCase(addBanner.fulfilled,(state)=>{
+        .addCase(addService.fulfilled,(state)=>{
             state.isSuccess = true;
             state.isLoading = true;
 
         })
-        .addCase(addBanner.rejected,(state,action)=>{
+        .addCase(addService.rejected,(state,action)=>{
             state.isError = true;
             state.isLoading=false;
             state.isSuccess=false;
             state.message = action.payload;
         })
 
-        .addCase(deleteBanner.pending,(state)=>{
+        .addCase(deleteService.pending,(state)=>{
             state.isLoading = true;
             state.isDeleted = false;
         })
-        .addCase(deleteBanner.fulfilled,(state)=>{
+        .addCase(deleteService.fulfilled,(state)=>{
             state.isDeleted = true;
             state.isLoading = false;
             state.isError = true;
 
         })
-        .addCase(deleteBanner.rejected,(state,action)=>{
+        .addCase(deleteService.rejected,(state,action)=>{
             state.isError = true;
             state.isLoading=false;
             state.isDeleted=false;
@@ -134,5 +133,5 @@ const bannerSlice = createSlice({
         })
     }
 })
-export const { reset } = bannerSlice.actions;
-export default bannerSlice.reducer;
+export const { reset } = serviceSlice.actions;
+export default serviceSlice.reducer;

@@ -1,0 +1,26 @@
+.Logo{
+    color: white;
+    font-size: x-large;
+    
+    text-decoration-line: none;
+}
+.Subnav{
+    margin-left:auto;
+    
+}
+.About{
+    text-decoration: none;
+    color: white;
+    margin-right: 18px;
+    &:hover{
+       font-size: larger;
+       font-weight: 700;
+       
+        color: white;
+        border-bottom: 1px solid white
+    }
+}
+.Sub-nav{
+    color: black;
+    text-decoration-line: none;
+}

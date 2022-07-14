@@ -10,8 +10,18 @@
 .address{
       display: flex;
 .left{
-    margin: 10px 20px;
+        margin: 10px 20px;
         color: rgb(70, 67, 67);
+        text-decoration: none;
+        text-decoration-line: none;
+       a{
+        text-decoration: none;
+            text-decoration-line: none;
+            color: rgb(70, 67, 67);
+                    &:hover{
+                        font-style: italic;
+                    }
+       } 
     }
     .right{
         margin: auto;

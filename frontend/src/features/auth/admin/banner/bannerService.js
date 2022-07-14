@@ -1,20 +1,28 @@
 import axios from 'axios'
+import * as api from '../../../../api/admin'
 // const BANNER = '/adminlogin/getBanner'
 
 export const getBanner = async()=>{
-    console.log("Banner on userside");
     const response = await axios.get("/adminlogin/getBanner");
-    console.log("baannerr",response.data);
     return response.data;
 };
-export const editBanner = async()=>{
+const addBanner = async(BannerData)=>{
+      const {data} = await api.addBanner(BannerData)
+
+    return data;
+}
+export const editBanner = async(bannerData,bannerId)=>{
     console.log("Banner is Updating");
-    const response = await axios.put(".adminlogin/editBanner")
-    console.log("here is the details",response.data)
-    return response.data;
+    const {data} = await api.editBanner(bannerData,bannerId)
+    console.log("here is the details are to be updated",data)
+    return data;
+}
+const deleteBanner = async(bannerId)=>{
+    const {data} =await api.deleteBanner(bannerId)
+    return data;
 }
 
 const bannerService = {
-    getBanner,editBanner
+    getBanner,editBanner,addBanner,deleteBanner
 }
 export default bannerService;

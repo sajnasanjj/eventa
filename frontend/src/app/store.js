@@ -4,7 +4,8 @@ import adminAuthReducer from '../features/auth/adminAuthSlice'
 import getUserReducer from '../features/auth/admin/getUser/getUserAuthSlice';
 import getBannerReducer from '../features/auth/admin/banner/bannerSlice'
 import editBannerReducer from '../features/auth/admin/banner/bannerSlice'
-import getGalleryReducer from '../features/auth/admin/Gallery/gallerySlice'
+import getGalleryReducer from '../features/auth/admin/Gallery/gallerySlice';
+import serviceReducer from '../features/auth/admin/serviceProvide/serviceSlice'
 export const store = configureStore({
   reducer: {
     auth:authReducer,
@@ -13,6 +14,7 @@ export const store = configureStore({
     getbannerr:getBannerReducer,
     editbanner:editBannerReducer,
     getgallary:getGalleryReducer,
+    allservice:serviceReducer,
     
   },
 }); 

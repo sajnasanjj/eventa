@@ -18,13 +18,10 @@ function Carousal() {
 
   useEffect(() => {
     dispatch(getBanner())
-  },[dispatch,banners]);
+  },[dispatch]);
 
  
-  console.log("sdfg",banners)
  
-
-console.log("This is the banner",banners)
   return (
       <div>
       <div style={{ display: 'block', width: '1500'}}>

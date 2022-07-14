@@ -17,10 +17,16 @@ import { Inputs } from './eventSource'
 import SingleUser from './pages/Admin/SingleUser/SingleUser'
 import About from './components/User/About/About'
 import Gallary from './pages/Admin/Gallary/Gallary'
+import GallaryUser from './pages/User/GallaryUser/GallaryUser'
 import Banner from './pages/Admin/Banner/Banner'
 import AddBanner from './pages/Admin/Banner/AddBanner'
 import EditBanner from './pages/Admin/Banner/EditBanner'
 import AddGallary from './pages/Admin/Gallary/AddGallary'
+// import Services from './components/User/Services/Services'
+// import Services from './pages/Admin/OurService/Services'
+import Album from './components/User/Album/Album'
+import Review from './components/User/Review/Review'
+import OurServices from './pages/Admin/OurService/Services'
 // react.lazy
 function App() {
       return (
@@ -46,18 +52,24 @@ function App() {
                                           <Route path="add" element={<AddGallary/>} />
                                           {/* <Route path="editGallary" element={<EditGallary/>}/>  */}
                                     </Route>
-
+                                    <Route path="services">
+                                          <Route index element={<OurServices/>} />
+                                    </Route>
                               </Route>
                         </Routes>
-
                         <Routes>
                               <Route exact path="/">
-                                    <Route index element={<HomePage />} />
+                                    <Route index element={<HomePage/>} />
                                     <Route path="logins" element={<Login />} />
                                     <Route path="register" element={<Register />} />
                                     <Route path="profile" element={<Profile />} />
-                                    <Route path="about" element={<About />} />
-                                    <Route path="gallary" element={<Gallary />} />
+                                    <Route path="about" element={<About/>} />
+                                    <Route path="photos" element={<HomePage/>}>
+                                                <Route index element={<GallaryUser/>}/>
+                                                <Route path="album" element={<Album/>}/>
+                                                <Route path="review" element={<Review/> }/>
+                                    </Route>
+                                    
                               </Route>
                         </Routes>
                   </Router>
@@ -65,7 +77,7 @@ function App() {
 
 
 
-                  <ToastContainer />
+                  <ToastContainer /> 
             </>
       )
 }

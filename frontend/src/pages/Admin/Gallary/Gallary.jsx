@@ -8,7 +8,7 @@ function Gallary() {
           const dispatch = useDispatch();
         useEffect(() => {
               dispatch(getGallary())
-          },[]);
+          },[dispatch]);
           return (
           <>
               <AdminHeader />

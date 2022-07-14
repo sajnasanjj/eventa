@@ -7,7 +7,8 @@ import { userData } from '../../../dummyData'
 import WidgetLg from '../../../components/Admin/WidgetLg/WidgetLg';
 import WidgetSm from '../../../components/Admin/WidgetsSm/WidgetSm';
 import AdminHeader from '../../../components/Admin/AdminNavbar/AdminHeader';
-import Sidebar from '../../../components/Admin/AdminSidebar/Sidebar'
+import Sidebar from '../../../components/Admin/AdminSidebar/Sidebar';
+import {Outlet} from 'react-router-dom';
 function AdminHome() {
   return (
     <>
@@ -16,11 +17,12 @@ function AdminHome() {
         <Sidebar />
         <div className="home">
           <FeaturedInfo />
-              <AdminChart data={userData} title="Chart" grid dataKey="Active User" />
-              <div className="homeWidgets">
-                <WidgetLg />
-                <WidgetSm />
-              </div>
+          <AdminChart data={userData} title="Chart" grid dataKey="Active User" />
+          <div className="homeWidgets">
+            <WidgetLg />
+            <WidgetSm />
+          </div> 
+         
         </div>
       </div>
     </>

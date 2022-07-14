@@ -1,9 +1,7 @@
 import axios from 'axios'
 
 export const getGallary = async()=>{
-    console.log("Gallary on userside");
     const response = await axios.get("/adminlogin/getGallaryDetails");
-    console.log("photos",response.data);
     return response.data;
 };
 export const editGallary = async()=>{

@@ -1,55 +1,55 @@
 import React, { useState, useEffect } from "react";
-import './DatatableB.scss';
+// import './DatatableB.scss';
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteForever } from "@material-ui/icons";
 // import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-// import Switch from '@mui/material/Switch';
 import { toast } from 'react-toastify'
-import { useDispatch,useSelector} from 'react-redux';
-import { reset,deleteBanner } from '../../../features/auth/admin/banner/bannerSlice'
+import { useDispatch, useSelector } from 'react-redux';
+import { reset,deleteService} from '../../../features/auth/admin/serviceProvide/serviceSlice'
 import { FaPencilAlt } from "react-icons/fa";
 // import {getBanner} from '../../../features/auth/admin/banner/bannerService'
 
-function BannerDatatable() {
+function ServiceDatatable() {
     const dispatch = useDispatch()
 
-    const [Banner, setBanner] = useState([])
-    const deletebr = (bannerId) => {
-        alert("banner",bannerId)
-        dispatch(deleteBanner(bannerId))
+    const [Service, setService] = useState([])
+    const deletingService = (serviceId) => {
+        alert("service", serviceId)
+        dispatch(deleteService(serviceId))
 
     }
-    const { banners, isError,isModified,isDeleted, isSuccess, message } = useSelector((state) => state.getbannerr);
-    
-    
+    const { services, isError, isModified, isDeleted, isSuccess, message } = useSelector((state) => state.allservice);
+
     useEffect(() => {
         if (isError) {
             toast.error(message || "Not Found")
             return
         }
-        if (isSuccess && banners) {
-            setBanner(banners)
+        if (isSuccess && services) {
+            setService(services)
         }
         dispatch(reset());
 
-    }, [banners, isError, isSuccess,isDeleted,isModified, message, dispatch]);
-      console.log("Bannererrr",banners)
+    }, [services, isError, isSuccess, isDeleted, isModified, message, dispatch]);
+    console.log("The services", services)
     const columns = [
-        {field:"", headerName:"No",width:50},
-        {field: '_id', headerName: 'id', width: 170,renderCell:(params)=>{
-            return(
-                <>{params.row._id}
-                </>
-            )
-        }},
+        { field: "", headerName: "No", width: 50 },
+        {
+            field: '_id', headerName: 'id', width: 170, renderCell: (params) => {
+                return (
+                    <>{params.row._id}
+                    </>
+                )
+            }
+        },
         {
             field: 'name', headerName: 'Name', width: 290, renderCell: (params) => {
                 return (
-                        <>
+                    <>
                         {params.row.name}
-                        </>
+                    </>
                 )
             }
         },
@@ -58,34 +58,31 @@ function BannerDatatable() {
                 return (
                     <div className="cellWithImg">
                         <img src={params.row.image} alt="" className="cellImg" />
-                        
                     </div>
                 )
             }
-},
-       
+        },
+
         {
-            field: "action", headerName: "Action", width: "200" ,renderCell:(params) => {
+            field: "action", headerName: "Action", width: "200", renderCell: (params) => {
                 return (
                     <>
-                       <div className="cellAction" >
-
-                            <Link to="editBanner"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteiconn" /></Button></Link>
-
-           </div>
-                        <div className="cellActionn">
-                            <Button variant="outlined" size="small" color="error" onClick={() => { deletebr(params.row._id) }}><DeleteForever className="deleteiconn" /></Button>
+                        <div className="cellAction" >
+                            <Link to="editService"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteiconn" /></Button></Link>
                         </div>
-                        </>
-                   )
-            } 
-            
+                        <div className="cellActionn">
+                            <Button variant="outlined" size="small" color="error" onClick={() => { deletingService(params.row._id) }}><DeleteForever className="deleteiconn" /></Button>
+                        </div>
+                    </>
+                )
+            }
+
         }
     ]
-    const row = Banner ? Banner : '';
+    const row = Service ? Service : '';
     return (
         <div className="datatablee">
-            <Button><Link to ="add">Add New Banner</Link></Button>
+            <Button><Link to="add">Add New Service</Link></Button>
             <div style={{ height: 400, width: '100%' }} className="datatablee">
                 <DataGrid
                     rows={row}
@@ -97,8 +94,7 @@ function BannerDatatable() {
                 />
             </div>
         </div>
-
     )
 }
 
-export default BannerDatatable;
+export default ServiceDatatable;

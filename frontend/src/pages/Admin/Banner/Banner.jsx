@@ -1,7 +1,7 @@
 import React,{useEffect} from "react";
 import './Banner.scss'
 import '../../../App.css'
-import { useDispatch } from 'react-redux'
+import { useDispatch,} from 'react-redux'
 import AdminHeader from "../../../components/Admin/AdminNavbar/AdminHeader";
 import Sidebar from "../../../components/Admin/AdminSidebar/Sidebar";
 import { getBanner } from '../../../features/auth/admin/banner/bannerSlice'
@@ -11,7 +11,7 @@ function Banner() {
     const dispatch = useDispatch();
     useEffect(() => {
         dispatch(getBanner())
-    },[]);
+    },[dispatch]);
   return (
     <>
     <AdminHeader/>

@@ -46,6 +46,10 @@ function Sidebar() {
               <GroupAddSharp className="sidebarIcon" />{' '}
               <Link to="/adminlogin/users" style={{ textDecoration: "none", color: 'black' }}>Users</Link>
             </li>
+            <li className="sidebarListItem">
+              <GroupAddSharp className="sidebarIcon" />{' '}
+              <Link to="/adminlogin/services" style={{ textDecoration: "none", color: 'black' }}>Services</Link>
+            </li>
 
             <li className="sidebarListItem">
               <TrendingUp className="sidebarIcon" />
