@@ -1,0 +1,94 @@
+.top {
+    flex: 4;
+    -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+    .head {
+        -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+        margin: 0px;
+        padding: 10px 10px;
+    }
+
+    .bottom {
+        margin: 0px;
+        padding: 10px;
+        display: flex;
+        -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+        box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+        .left {
+            flex: 2;
+            margin: 10px;
+            padding: 20px;
+            -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+            box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+
+        }
+
+        .right {
+            margin: 10px;
+
+            padding: 10px;
+            // -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+            // box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+
+            .form {
+
+                flex-wrap: wrap;
+                margin: 10px;
+
+
+                .formInput {
+                    width: 100%;
+                    display: flex;
+
+                    .img {
+                        width: 300px;
+                        height: 150px;
+                        margin-bottom: 15px;
+                    }
+
+                    label {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+
+                        .icon {
+                            cursor: pointer;
+
+                            &:hover {
+                                background-color: grey;
+                                color: white;
+                                padding: 5px;
+
+                            }
+                        }
+                    }
+
+                    input {
+                        padding: 5px;
+                        border: none;
+                        border-bottom: 1px solid gray;
+                    }
+                }
+            }
+
+            .button {
+                margin: 10px;
+                border-color: black;
+                background-color: white;
+                color: black;
+
+                &:hover {
+                    background-color: black;
+                    color: white;
+                }
+            }
+
+
+
+        }
+    }
+}

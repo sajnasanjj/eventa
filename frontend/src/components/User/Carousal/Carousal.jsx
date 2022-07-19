@@ -3,8 +3,10 @@ import React,{useEffect} from "react";
 import "react-bootstrap-carousel/dist/react-bootstrap-carousel.css";
 import 'bootstrap/dist/css/bootstrap.css';
 import Carousel from 'react-bootstrap/Carousel';
+import {Link} from 'react-router-dom';
 import { Button } from "@material-ui/core";
 import {useSelector,useDispatch} from 'react-redux';
+import './Carousal.scss'
 
 // import { toast } from 'react-toastify'
 // import { reset } from '../../../features/auth/admin/banner/bannerSlice'
@@ -36,12 +38,12 @@ function Carousal() {
               alt=""
             /> 
 
-            <Carousel.Caption style={{ color: "black" }}>
+            <Carousel.Caption style={{ color: "white" }}>
                         <h3>
                              {input.name}
                         </h3>
                      
-                       <Button>Enquire Now</Button>
+                <Button class="enquire"><Link to="enquire" class="Link">Enquire Now</Link></Button>
                   </Carousel.Caption>
               </Carousel.Item>
           ))}

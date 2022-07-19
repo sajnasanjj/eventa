@@ -1,34 +1,31 @@
 import React, { useState, useEffect } from "react";
-// import './DatatableB.scss';
+import './GallaryDatatable.scss';
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteForever } from "@material-ui/icons";
-// import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
-// import Switch from '@mui/material/Switch';
 import { toast } from 'react-toastify'
 import { useDispatch, useSelector } from 'react-redux';
-import { reset } from '../../../features/auth/admin/Gallery/gallerySlice'
+import { reset,deleteGallery } from '../../../features/auth/admin/Gallery/gallerySlice'
 import { FaPencilAlt } from "react-icons/fa";
-// import {getGallary} from '../../../features/auth/admin/gallary/gallaryService'
 
 function GallaryDatatable() {
-    // const label = { inputProps: { 'aria-label': '' } };
-    const [Gallary, setGallary] = useState([])
     const dispatch = useDispatch()
-    const { gallarys, isError, isSuccess, message } = useSelector((state) => state.getgallary);
+    const [Gallary, setGallary] = useState([])
+    const deletingAlbum = (gallaryId) => {
+        dispatch(deleteGallery(gallaryId))
+
+    }
+    const { gallarys, isError,isDeleted, isSuccess, message } = useSelector((state) => state.getgallery);
 
     useEffect(() => {
-        if (isError) {
-            toast.error(message || "Not Found")
-            return
-        }
+        
         if (isSuccess && gallarys) {
             setGallary(gallarys)
         }
         dispatch(reset());
 
-    }, [gallarys, isError, isSuccess, message, dispatch]);
+    }, [gallarys, isError, isSuccess,isDeleted, message, dispatch]);
     console.log("Gallaryyyy", gallarys)
     const columns = [
         { field: "", headerName: "No", width: 50 },
@@ -52,21 +49,7 @@ function GallaryDatatable() {
                 )
             }
         },
-        // {
-        //     field: 'status', headerName: 'Status', width: 100, renderCell: (params) => {
-        //         return (
-        //             <div className={`cellWithStatus ${params.row.status}`}>
-        //                 {params.row.status}</div>
-        //         )
-        //     }
-        // },
-        // {
-        //     field:'#',headerName:"",width:120,renderCell:(params)=>{
-        //         return(
-        //             <div><Switch {...label} defaultChecked/></div>
-        //         )
-        //     }
-        //     }, 
+        
         {
             field: "action", headerName: "Action", width: "200", renderCell: (params) => {
                 return (
@@ -74,11 +57,11 @@ function GallaryDatatable() {
                         <div className="cellAction" >
                             {/* <CustomizedDialogs id={params.id ? params.id:""}/> */}
 
-                            <Link to="editGallary"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteiconn" /></Button></Link>
+                            <Link to="editGallary"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteicon" /></Button></Link>
 
                         </div>
-                        <div className="cellActionn">
-                            <Button variant="outlined" size="small" color="error"><DeleteForever className="deleteiconn" /></Button>
+                        <div className="cellAction">
+                            <Button variant="outlined" size="small" color="error" onClick={() => { deletingAlbum(params.row._id) }}><DeleteForever className="deleteicon" /></Button>
                         </div>
                     </>
                 )
@@ -89,7 +72,7 @@ function GallaryDatatable() {
     return (
         <div className="datatablee">
             <Button><Link to="add">Add New Photo</Link></Button>
-            <div style={{ height: 400, width: '100%' }} className="datatablee">
+            <div style={{ height: 400, width: '100%' }} className="datatable">
                 <DataGrid
                     rows={rows}
                     columns={columns}

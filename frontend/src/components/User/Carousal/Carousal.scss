@@ -1,3 +1,23 @@
-.heading{
-    color: black;
+
+.enquire{
+    border: 1px solid white;
+    background-color: black;
+    font-size: larger;
+    padding: 8px;
+    border-radius: 20%;
+    &:hover{
+        color: black;
+        background-color: white;
+        border: 1px solid black;
+        
+        .Link{
+     
+            color: rgb(240, 238, 238);
+            &:hover{
+                color: black;
+                font-weight: bold;
+            }
+        }
+
+    }
 }

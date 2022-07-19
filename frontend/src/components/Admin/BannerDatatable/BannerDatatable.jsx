@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import './DatatableB.scss';
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteForever } from "@material-ui/icons";
-// import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 // import Switch from '@mui/material/Switch';
@@ -17,7 +16,7 @@ function BannerDatatable() {
 
     const [Banner, setBanner] = useState([])
     const deletebr = (bannerId) => {
-        alert("banner",bannerId)
+        
         dispatch(deleteBanner(bannerId))
 
     }
@@ -25,10 +24,7 @@ function BannerDatatable() {
     
     
     useEffect(() => {
-        if (isError) {
-            toast.error(message || "Not Found")
-            return
-        }
+        
         if (isSuccess && banners) {
             setBanner(banners)
         }

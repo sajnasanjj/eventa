@@ -12,7 +12,6 @@ import TextField from '@mui/material/TextField'
 import Paper from '@mui/material/Paper'
 import Box from '@mui/material/Box'
 import Grid from '@mui/material/Grid'
-import Typography from '@mui/material/Typography'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 import { Container } from 'react-bootstrap'
 import { FaUser } from 'react-icons/fa'
@@ -20,7 +19,7 @@ import { FaUser } from 'react-icons/fa'
 const theme = createTheme()
 export default function Register() {
   const [formData,setFormData] = useState({
-    name:'',email:'',password:'',password2:''
+    name:'',email:'',password:'',password2:'',
   })
   const { name,email,password,password2 } = formData
   const navigate = useNavigate()
@@ -103,9 +102,10 @@ export default function Register() {
                 alignItems: 'center',
               }}
             >
-              <Typography component="h1" variant="h5">
-               <FaUser/> Sign up
-              </Typography>
+              <h5><FaUser />
+                Eventa Wedding Plannar
+              </h5>
+             
               <Box
                 component="form"
                 noValidate

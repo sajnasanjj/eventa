@@ -8,8 +8,7 @@ export const getBanner = async()=>{
 };
 const addBanner = async(BannerData)=>{
       const {data} = await api.addBanner(BannerData)
-
-    return data;
+      return data;
 }
 export const editBanner = async(bannerData,bannerId)=>{
     console.log("Banner is Updating");

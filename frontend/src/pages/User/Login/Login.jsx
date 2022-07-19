@@ -102,10 +102,13 @@ export default function Login() {
                   alignItems: 'center',
                 }}
               >
-
+                <h5>
+                  Eventa Wedding Plannar
+                </h5>
                 <Typography component="h1" variant="h5">
                   <FaUser /> Login
                 </Typography>
+
                 <Box
                   component="form"
                   noValidate

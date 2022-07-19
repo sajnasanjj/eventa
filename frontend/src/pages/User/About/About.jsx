@@ -1,5 +1,5 @@
 import React from "react";
-import Header from "../Header/Header";
+import Header from "../../../components/User/Header/Header";
 import './About.scss'
 import { Button } from "@material-ui/core";
 

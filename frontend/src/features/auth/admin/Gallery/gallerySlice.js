@@ -6,32 +6,52 @@ const initialState ={
     gallarys:[],
     isError:false,
     isSuccess:false,
+    isModified:false,
     isLoading:false,
     message:'',
 
 }
-export const getGallary = createAsyncThunk('getgallary',async(thunkAPI)=>{
+export const getGallery = createAsyncThunk('getgallary',async(thunkAPI)=>{
     try{
         console.log("kitti")
-            return await galleryService.getGallary();
-
+            return await galleryService.getGallery();
     }catch(error){
             const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
             return thunkAPI.rejectWithValue(message)
 
     }
 });
-export const editGallary = createAsyncThunk('editgallary',async(thunkAPI)=>{
+export const editGallery = createAsyncThunk('editgallary',async(thunkAPI)=>{
     try{
         console.log("Its going to update")
-        return await galleryService.editGallary();
+        return await galleryService.editGallery();
     }catch(error){
             const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
             return thunkAPI.rejectWithValue(message)
     }
 })
+export const addGallery = createAsyncThunk('addgallery',async(gallaryData,thunkAPI)=>{
+    try{
+        return await gallerySlice.addGallery(gallaryData)
+    }catch(error){
+            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
+            return thunkAPI.rejectWithValue(message)
+    }
+})
+export const deleteGallery = createAsyncThunk('deletegallery',async(gallaryId,thunkAPI)=>{
+     try{
+        console.log("delte",gallaryId)
+
+        return await galleryService.deleteGallery(gallaryId);
+
+    }catch(error){
+            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
+            return thunkAPI.rejectWithValue(message)
+
+    }
+})
 const gallerySlice = createSlice({
-    name:'getgallary',
+    name:'getgallery',
     initialState,
     reducers:{
         reset:(state) => {
@@ -43,38 +63,72 @@ const gallerySlice = createSlice({
     },
     extraReducers:(builder)=>{
         builder
-        .addCase(getGallary.pending,(state)=>{
+        .addCase(getGallery.pending,(state)=>{
             state.isLoading = true;
         })
-        .addCase(getGallary.fulfilled,(state,action)=>{
+        .addCase(getGallery.fulfilled,(state,action)=>{
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
             state.gallarys = action.payload;
         })
-        .addCase(getGallary.rejected,(state,action)=>{
+        .addCase(getGallery.rejected,(state,action)=>{
             state.isSuccess = false;
             state.isError = true;
             state.message = action.payload;
             state.gallarys = null
 
         })
-        .addCase(editGallary.pending,(state)=>{
+        .addCase(editGallery.pending,(state)=>{
             state.isLoading = true;
         })
-        .addCase(editGallary.fulfilled,(state,action)=>{
+        .addCase(editGallery.fulfilled,(state,action)=>{
             state.isLoading = false;
             state.isSuccess = true;
             state.isError = false;
             state.gallarys = action.payload;
         })
-        .addCase(editGallary.rejected,(state,action)=>{
+        .addCase(editGallery.rejected,(state,action)=>{
             state.isSuccess = false;
             state.isError = true;
             state.message = action.payload;
             state.gallarys = null
+        })
+        .addCase(addGallery.pending,(state)=>{
+            state.isLoading = true;
+        })
+        .addCase(addGallery.fulfilled,(state)=>{
+            state.isSuccess = true;
+            state.isLoading = true;
 
         })
+        .addCase(addGallery.rejected,(state,action)=>{
+            state.isError = true;
+            state.isLoading=false;
+            state.isSuccess=false;
+            state.message = action.payload;
+        })
+        .addCase(deleteGallery.pending,(state)=>{
+            state.isLoading = true;
+            state.isSuccess = false;
+        })
+        .addCase(deleteGallery.fulfilled,(state,action)=>{
+            const itemId = action.payload.gallaryId;
+        console.log("itemId", itemId);
+        state.getgallery.gallarys = state.getgallery.gallarys.filter(
+          (item) => item._id !== itemId
+        );
+
+        })
+        .addCase(deleteGallery.rejected,(state,action)=>{
+            state.isError = true;
+            state.isLoading=false;
+            state.isSuccess=false;
+            state.message = action.payload;
+            state.gallarys=null
+        })
+
+        
     }
 })
 export const { reset } = gallerySlice.actions;

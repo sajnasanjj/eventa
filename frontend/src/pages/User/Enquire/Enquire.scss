@@ -1,0 +1,22 @@
+.main{
+    margin: 10px;
+    text-align: center;
+    -webkit-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
+        -moz-box-shadow: 1px 0px 20px 5px rgba(129, 127, 127, 0.52);
+        box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
+        
+.sub{
+    // -webkit-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.75);
+        // -moz-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
+        box-shadow: 1px 0px 50px 5px rgba(164, 161, 161, 0.72);
+        font-size: large;
+}
+&:hover{
+    cursor: pointer;
+}
+}
+h3{
+    &:hover{
+        font-style: italic;
+    }
+}

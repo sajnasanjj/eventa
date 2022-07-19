@@ -1,17 +1,25 @@
-import axios from 'axios'
+import * as api from '../../../../api/admin'
 
-export const getGallary = async()=>{
-    const response = await axios.get("/adminlogin/getGallaryDetails");
-    return response.data;
-};
-export const editGallary = async()=>{
-    console.log("Gallary is Updating");
-    const response = await axios.put(".adminlogin/editGallary")
-    console.log("here is the details",response.data)
-    return response.data;
+export const getGallery = async () => {
+  const { data } = await api.getGallery()
+  return data
 }
-
+// export const editGallery = async (gallaryData) => {
+//   const { data } = await api.editGallery(gallaryData)
+//   return data
+// }
+export const addGallery = async (gallaryData) => {
+  const { data } = await api.addGallery(gallaryData)
+  return data
+}
+const deleteGallery = async (gallaryId) => {
+  const { data } = await api.deleteGallery(gallaryId)
+  return data
+}
 const galleryService = {
-    getGallary,editGallary
+  getGallery,
+
+  addGallery,
+  deleteGallery,
 }
-export default galleryService;
+export default galleryService

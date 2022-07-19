@@ -1,6 +1,6 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import bannerService from './bannerService';
-
+import {errorHandler} from '../../../../utils/errorMessage'
 
 const initialState ={
     banners:[],
@@ -16,31 +16,27 @@ export const getBanner = createAsyncThunk('bannerthunk',async(data,thunkAPI)=>{
     try{
         console.log("yupppp")
             return await bannerService.getBanner();
-
     }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
-
+      return thunkAPI.rejectWithValue(errorHandler(error));
     }
 });
+
 export const addBanner = createAsyncThunk('addbannerThunk/addBanner',async(bannerData,thunkAPI)=>{
     try{
         console.log("addeddd")
         return await bannerService.addBanner(bannerData);
     }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
-    }
+      return thunkAPI.rejectWithValue(errorHandler(error));    }
 })
+
 export const editBanner = createAsyncThunk('editbanner',async(id,thunkAPI)=>{
     try{
         console.log("Its going to update")
         return await bannerService.editBanner(id);
     }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
-    }
-})
+      return thunkAPI.rejectWithValue(errorHandler(error));    }
+});
+
 export const deleteBanner = createAsyncThunk('deleteBanner',async(bannerId,thunkAPI)=>{
     try{
         console.log("delte",bannerId)
@@ -48,11 +44,10 @@ export const deleteBanner = createAsyncThunk('deleteBanner',async(bannerId,thunk
         return await bannerService.deleteBanner(bannerId);
 
     }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
-
+      return thunkAPI.rejectWithValue(errorHandler(error));
     }
-})
+});
+
 const bannerSlice = createSlice({
     name:'get-all-banner',
     initialState,
@@ -120,17 +115,19 @@ const bannerSlice = createSlice({
             state.isLoading = true;
             state.isDeleted = false;
         })
-        .addCase(deleteBanner.fulfilled,(state)=>{
-            state.isDeleted = true;
-            state.isLoading = false;
-            state.isError = true;
+        .addCase(deleteBanner.fulfilled,(state,action)=>{
+           const itemId = action.payload.gallaryId;
+        console.log("itemId", itemId);
+        state.getbannerr.banners = state.getbannerr.banners.filter(
+          (item) => item._id !== itemId
+        );
 
         })
         .addCase(deleteBanner.rejected,(state,action)=>{
             state.isError = true;
             state.isLoading=false;
-            state.isDeleted=false;
             state.message = action.payload;
+            state.banners= null
         })
     }
 })

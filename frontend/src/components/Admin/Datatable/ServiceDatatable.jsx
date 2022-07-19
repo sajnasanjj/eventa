@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
-// import './DatatableB.scss';
+import './Datatable.scss'
 import { DataGrid } from '@mui/x-data-grid';
 import { DeleteForever } from "@material-ui/icons";
-// import { FaEye } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import Button from '@mui/material/Button';
 import { toast } from 'react-toastify'
@@ -16,28 +15,24 @@ function ServiceDatatable() {
 
     const [Service, setService] = useState([])
     const deletingService = (serviceId) => {
-        alert("service", serviceId)
         dispatch(deleteService(serviceId))
 
     }
-    const { services, isError, isModified, isDeleted, isSuccess, message } = useSelector((state) => state.allservice);
+    const { services, isError, isModified, isSuccess, message } = useSelector((state) => state.allservice);
 
     useEffect(() => {
-        if (isError) {
-            toast.error(message || "Not Found")
-            return
-        }
+       
         if (isSuccess && services) {
             setService(services)
         }
         dispatch(reset());
 
-    }, [services, isError, isSuccess, isDeleted, isModified, message, dispatch]);
+    }, [services, isError, isSuccess, isModified, message, dispatch]);
     console.log("The services", services)
     const columns = [
-        { field: "", headerName: "No", width: 50 },
+        // { field: "", headerName: "No", width: 50 },
         {
-            field: '_id', headerName: 'id', width: 170, renderCell: (params) => {
+            field: '_id', headerName: 'id', width: 200, renderCell: (params) => {
                 return (
                     <>{params.row._id}
                     </>
@@ -56,7 +51,7 @@ function ServiceDatatable() {
         {
             field: "image", headerName: "image", width: 170, renderCell: (params) => {
                 return (
-                    <div className="cellWithImg">
+                    <div className="cellImg">
                         <img src={params.row.image} alt="" className="cellImg" />
                     </div>
                 )
@@ -67,11 +62,11 @@ function ServiceDatatable() {
             field: "action", headerName: "Action", width: "200", renderCell: (params) => {
                 return (
                     <>
-                        <div className="cellAction" >
-                            <Link to="editService"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteiconn" /></Button></Link>
-                        </div>
-                        <div className="cellActionn">
-                            <Button variant="outlined" size="small" color="error" onClick={() => { deletingService(params.row._id) }}><DeleteForever className="deleteiconn" /></Button>
+                        {/* <div className="cellAction" >
+                            <Link to="editService"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteicon" /></Button></Link>
+                        </div> */}
+                        <div className="cellAction">
+                            <Button variant="outlined" size="small" color="error" onClick={() => { deletingService(params.row._id) }}><DeleteForever className="deleteicon" /></Button>
                         </div>
                     </>
                 )
@@ -81,9 +76,9 @@ function ServiceDatatable() {
     ]
     const row = Service ? Service : '';
     return (
-        <div className="datatablee">
+        <div className="datatable">
             <Button><Link to="add">Add New Service</Link></Button>
-            <div style={{ height: 400, width: '100%' }} className="datatablee">
+            <div style={{ height: 400, width: '100%' }} className="datatable">
                 <DataGrid
                     rows={row}
                     columns={columns}
@@ -93,7 +88,7 @@ function ServiceDatatable() {
                     checkboxSelection
                 />
             </div>
-        </div>
+        </div> 
     )
 }
 

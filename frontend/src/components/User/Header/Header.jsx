@@ -34,7 +34,7 @@ function Header() {
   const onLogout = () => {
     dispatch(logout())
     dispatch(reset())
-    navigate('/')
+    navigate('/photos')
   }
   return (
     <div>
@@ -46,7 +46,7 @@ function Header() {
            
           
             <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: 'white'}}>
-              <Link to="/" className="Logo">
+              <Link to="/photos" className="Logo">
                 Event{''}
               </Link>
             </Typography>

@@ -12,9 +12,6 @@ import { Link } from 'react-router-dom'
 
 function Sidebar() {
   return (
-    
-     
-
     <div className="sidebar">
 
       <div className="sidebarWrapper">
@@ -49,6 +46,10 @@ function Sidebar() {
             <li className="sidebarListItem">
               <GroupAddSharp className="sidebarIcon" />{' '}
               <Link to="/adminlogin/services" style={{ textDecoration: "none", color: 'black' }}>Services</Link>
+            </li>
+            <li className="sidebarListItem">
+              <GroupAddSharp className="sidebarIcon" />{' '}
+              <Link to="/adminlogin/albums" style={{ textDecoration: "none", color: 'black' }}>Albums</Link>
             </li>
 
             <li className="sidebarListItem">

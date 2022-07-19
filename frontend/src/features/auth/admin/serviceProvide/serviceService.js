@@ -1,18 +1,15 @@
-// import axios from 'axios'
+import axios from 'axios'
 
 import * as api from '../../../../api/admin'
 
 export const getService = async()=>{
-    console.log("service")
-    const {data} = await api.getService()
-    if(data) {
-    localStorage.setItem('Service',JSON.stringify(data))
-    }
-    console.log("services");
-    return data;
+    const response = await axios.get("/adminlogin/getService");
+    return response.data;
 };
 const addService = async(serviceData)=>{
+    console.log("its working")
       const {data} = await api.addService(serviceData)
+      console.log("services added")
       return data;
 }
 export const editService = async(serviceData,serviceId)=>{

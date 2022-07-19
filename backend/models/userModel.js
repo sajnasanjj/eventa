@@ -17,6 +17,11 @@ const userSchema = mongoose.Schema({
         required:[true,'Please add a password'],
         unique:true
     },
+  
+    status:{
+      type:Boolean,
+      required:true,
+    }
 },
 {
     timestamps:true

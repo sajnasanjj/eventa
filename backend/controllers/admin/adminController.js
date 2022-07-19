@@ -5,6 +5,8 @@ const Admin = require('../../models/adminModel')
 const Banner = require('../../models/admin/bannerModel')
 const Gallary = require('../../models/admin/gallaryModel')
 const User = require('../../models/userModel')
+const Service = require('../../models/admin/serviceModel')
+const Album = require('../../models/admin/albumModel')
 
 
 const registerAdmin = asyncHandler(async (req, res) => {
@@ -66,6 +68,23 @@ const getUser = asyncHandler(async (req, res) => {
     res.status(200).json(user)
     res.json({ message: 'User data display to admin' })
 })
+
+const changeUserStatus = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if (user) {
+    let changedUser = await User.updateOne(
+      { _id: req.params.id },
+      { $set: { status: !user.status } },
+    )
+    res.status(200).json(changedUser)
+  } else {
+    res.status(400)
+    throw new Error('user not found')
+  }
+})
+
+
 const getBanner = asyncHandler(async(req,res)=>{
     const { name,image} = req.body;
     
@@ -114,7 +133,7 @@ const editBanner = asyncHandler(async (req,res)=> {
 const deleteBanner = asyncHandler(async(req,res)=>{
     const bannerId = req.params.id;
     try{
-      
+
        const banner = await Banner.findById(bannerId)
        const data = await banner.remove();
 
@@ -126,10 +145,10 @@ const deleteBanner = asyncHandler(async(req,res)=>{
         message:'Banner is deleted'
     })
             console.log("deleted");
-
 })
-const getGallary = asyncHandler(async(req,res)=>{
-    const { name,image} = req.body;
+
+const addGallery = asyncHandler(async(req,res)=>{
+    const { name,image } = req.body;
     
     const gallary = await Gallary.create({
         name,
@@ -146,12 +165,12 @@ const getGallary = asyncHandler(async(req,res)=>{
     res.json({ message: 'gallary data display to admin' })
 }
 })
-const getGallaryDetails = asyncHandler(async (req, res) => {
+const getGalleryDetails = asyncHandler(async (req, res) => {
     const gallary = await Gallary.find({})
     res.status(200).json(gallary)
     res.json({ message: 'gallary details to admin' })
 })  
-const editGallary = asyncHandler(async (req,res)=> {
+const editGallery = asyncHandler(async (req,res)=> {
     const gallaryId =req.params.id;
     
     try{
@@ -173,7 +192,7 @@ const editGallary = asyncHandler(async (req,res)=> {
     }
     res.json({ message : 'gallary is updated'})
 })
-const deleteGallary = asyncHandler(async(req,res)=>{
+const deleteGallery = asyncHandler(async(req,res)=>{
     const gallaryId = req.params.id;
     try{
       
@@ -191,6 +210,132 @@ const deleteGallary = asyncHandler(async(req,res)=>{
 
 })
 
+const addService = asyncHandler(async(req,res)=>{
+    const { name,image} = req.body;
+    
+    const service = await Service.create({
+        name,
+        image,
+    })
+    if(service){
+         res.status(201).json({
+        _id:service.id,
+        name:service.name,
+        image:service.image,
+        token:generateToken(service._id)
+    })
+}else{
+    res.json({ message: 'Services display to admin' })
+}
+})
+const getService = asyncHandler(async (req, res) => {
+    const service = await Service.find({})
+    res.status(200).json(service)
+    res.json({ message: 'service details to admin' })
+})  
+const editService = asyncHandler(async (req,res)=> {
+    const serviceId =req.params.id;
+    
+    try{
+        const newServiceData ={
+            name : req.body.name,
+            image : req.body.image,
+        };
+    const service =await Service.findByIdAndUpdate(serviceId,newServiceData,{
+        new:true,
+        runValidators : true,
+        useFindAndModify:false,
+    })
+    res.status(200).json({
+        success:true,
+        service
+    })
+    }catch(error){
+        res.status(400).json(error)
+    }
+    res.json({ message : 'service is updated'})
+})
+const deleteService = asyncHandler(async(req,res)=>{
+    const serviceId = req.params.id;
+    try{
+      
+       const service = await Service.findById(serviceId)
+       const data = await service.remove();
+
+        res.status(200).json({ serviceId : data._id})
+    }catch(error){
+        res.status(400).json(error)
+    }
+    res.json({
+        message:'service is deleted'
+    })
+            console.log("deleted");
+
+})
+const addAlbum = asyncHandler(async(req,res)=>{
+    const { name,image} = req.body;
+    
+    const album = await Album.create({
+        name,
+        image,
+    })
+    if(album){
+         res.status(201).json({
+        _id:album.id,
+        name:album.name,
+        image:album.image,
+        token:generateToken(album._id)
+    })
+}else{
+    res.json({ message: 'albums display to admin' })
+}
+})
+const getAlbum = asyncHandler(async (req, res) => {
+    const album = await Album.find({})
+    res.status(200).json(album)
+    res.json({ message: 'album details to admin' })
+})  
+const editAlbum = asyncHandler(async (req,res)=> {
+    const albumId =req.params.id;
+    
+    try{
+        const newAlbumData ={
+            name : req.body.name,
+            image : req.body.image,
+        };
+    const album =await Album.findByIdAndUpdate(albumId,newAlbumData,{
+        new:true,
+        runValidators : true,
+        useFindAndModify:false,
+    })
+    res.status(200).json({
+        success:true,
+        album
+    })
+    }catch(error){
+        res.status(400).json(error)
+    }
+    res.json({ message : 'album is updated'})
+})
+const deleteAlbum = asyncHandler(async(req,res)=>{
+    const albumId = req.params.id;
+    try{
+      
+       const album = await Album.findById(albumId)
+       const data = await album.remove();
+
+        res.status(200).json({ albumId : data._id})
+    }catch(error){
+        res.status(400).json(error)
+    }
+    res.json({
+        message:'album is deleted'
+    })
+            console.log("deleted");
+
+})
+
+
 const generateToken = (id) => {
     return jwt.sign ({ id }, process.env.JWT_SECRET, {
         expiresIn: '30d' ,
@@ -199,8 +344,11 @@ const generateToken = (id) => {
     module.exports = {
         registerAdmin,
         loginAdmin,
-        getUser,
+        getUser,changeUserStatus,
         getBanner,getBannerDetails,editBanner,deleteBanner,
-        getGallary,getGallaryDetails,editGallary,deleteGallary,
+        addGallery,getGalleryDetails,editGallery,deleteGallery,
+        getService,addService,editService,deleteService,
+        getAlbum,addAlbum,editAlbum,deleteAlbum
         
     }
+    

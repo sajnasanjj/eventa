@@ -1,39 +1,30 @@
-import React from "react";
+import React,{useEffect} from "react";
 import './Album.scss'
+import {useSelector,useDispatch} from 'react-redux'
+import { getAlbum } from "../../../features/auth/admin/Album/albumSlice";
 function Album() {
+  const dispatch = useDispatch();
+  const { albums } = useSelector((state) => state.allalbum);
+
+  useEffect(() => {
+    dispatch(getAlbum())
+  }, [dispatch]);
   return (
     <>
-      <div className="container">
 
-
-        <div className="album">
-          <div className="albumItem">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ6eBBi_D9KtNh95SG44vLlvpKo9UEaVdydg&usqp=CAU" alt="" className="albumImg" />
-            <div className="albumTitles">
-              <h5>Sabna Shafeeq</h5>
-
+      <div className="container m-5">
+          <div className="row album">
+          {albums.map((input) => (
+            <div className="col-md-4 albumItem">
+              <img src={input.image} alt="" className="albumImg" />
+              <div className="albumTitles">
+                <h5>{input.name}</h5>
+              </div>
             </div>
+          ))}
           </div>
-
-          <div className="albumItem">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ6eBBi_D9KtNh95SG44vLlvpKo9UEaVdydg&usqp=CAU" alt="" className="albumImg" />
-            <div className="albumTitles">
-              <h5>Sabna Shafeeq</h5>
-
-            </div>
-          </div>
-
-          <div className="albumItem">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZ6eBBi_D9KtNh95SG44vLlvpKo9UEaVdydg&usqp=CAU" alt="" className="albumImg" />
-            <div className="albumTitles">
-              <h5>Sabna Shafeeq</h5>
-
-            </div>
-          </div>
-
-        </div>
-
-
+      
+       
       </div>
     </>
   );

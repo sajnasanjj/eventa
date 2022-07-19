@@ -1,16 +1,16 @@
-// import * as api from '../../../api/admin';
-import axios from "axios";
-// import {getUser} from "../../../api/admin"
+import * as api from '../../../../api/admin'
 
-export const getUsers = async()=>{
-    console.log("get my data");
-   const response = await axios.get("/adminlogin/getUser");
-   console.log("datassss",response.data);                                                                                                    
-
-   return response.data;
-   
-};
-const getUserAuthService = {
-    getUsers,
+const getUser = async () => {
+  const { data } = await api.getUser()
+  return data
 }
-export default getUserAuthService;
+
+const changeUserStatus = async (userId) => {
+  const { data } = await api.changeUserStatus(userId)
+  return data
+}
+const getUserAuthService = {
+  getUser,
+  changeUserStatus,
+}
+export default getUserAuthService

@@ -1,13 +1,13 @@
 import React,{useEffect} from "react";
 import './Gallary.scss'
 import {useSelector,useDispatch} from 'react-redux'
-import {getGallary} from '../../../features/auth/admin/Gallery/gallerySlice'
+import {getGallery} from '../../../features/auth/admin/Gallery/gallerySlice'
 function GallaryUser() {
     const dispatch = useDispatch();
-    const { gallarys } = useSelector((state) => state.getgallary);
+    const { gallarys } = useSelector((state) => state.getgallery);
 
     useEffect(() => {
-        dispatch(getGallary())
+        dispatch(getGallery())
     },[dispatch]);
     console.log("sdfg",gallarys)
 
@@ -20,7 +20,6 @@ function GallaryUser() {
                 <div className="featuredTitles">
                     <h5>{input.name}</h5>
                     <p>200 Seating
-                        300 Floating
                     </p>
                 </div>
             </div> 
