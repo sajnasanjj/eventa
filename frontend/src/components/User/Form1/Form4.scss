@@ -1,0 +1,26 @@
+.photo-out-head{
+    text-align: center;
+    
+}
+
+.cont{
+    border-style: none;
+    display: flex;
+.photo-out{
+    text-align: center;
+    display: flex;
+}
+}
+.Link-of-Arrow {
+    margin-right: 50px;
+}
+.chooseButton{
+    border: 2px solid rgb(163, 5, 5);
+    color: rgb(163, 5, 5);
+    background-color: white;
+    font-weight: 500;
+    &:hover{
+    background-color: rgb(163, 5, 5);
+    color: white;
+    }
+}

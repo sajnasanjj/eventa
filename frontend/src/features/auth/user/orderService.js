@@ -5,7 +5,9 @@ export const getOrder = async () => {
   return data
 }
 export const addOrder = async (orderData) => {
-  const { data } = await api.addOrder(orderData)
+  console.log("added")
+  const {data} = await api.addOrder(orderData)
+  console.log("added suucessfully",data)
   return data
 }
 

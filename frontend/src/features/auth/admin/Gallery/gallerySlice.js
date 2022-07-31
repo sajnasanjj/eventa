@@ -1,6 +1,6 @@
 import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
 import galleryService from './galleryService';
-
+import { errorHandler } from '../../../../utils/errorMessage';
 
 const initialState ={
     gallarys:[],
@@ -11,31 +11,22 @@ const initialState ={
     message:'',
 
 }
-export const getGallery = createAsyncThunk('getgallary',async(thunkAPI)=>{
+export const getGallery = createAsyncThunk('getgallary',async(data,thunkAPI)=>{
     try{
         console.log("kitti")
             return await galleryService.getGallery();
     }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
-
+        console.log(error)
+      return thunkAPI.rejectWithValue(errorHandler(error));
     }
 });
-export const editGallery = createAsyncThunk('editgallary',async(thunkAPI)=>{
-    try{
-        console.log("Its going to update")
-        return await galleryService.editGallery();
-    }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
-    }
-})
+
 export const addGallery = createAsyncThunk('addgallery',async(gallaryData,thunkAPI)=>{
     try{
-        return await gallerySlice.addGallery(gallaryData)
+        console.log("okk");
+        return await galleryService.addGallery(gallaryData)
     }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
+      return thunkAPI.rejectWithValue(errorHandler(error))
     }
 })
 export const deleteGallery = createAsyncThunk('deletegallery',async(gallaryId,thunkAPI)=>{
@@ -45,8 +36,7 @@ export const deleteGallery = createAsyncThunk('deletegallery',async(gallaryId,th
         return await galleryService.deleteGallery(gallaryId);
 
     }catch(error){
-            const message =(error.response && error.response.data && error.response.data.message) || error.message || error.toString() || 'Something wrong';
-            return thunkAPI.rejectWithValue(message)
+      return thunkAPI.rejectWithValue(errorHandler(error))
 
     }
 })
@@ -79,21 +69,7 @@ const gallerySlice = createSlice({
             state.gallarys = null
 
         })
-        .addCase(editGallery.pending,(state)=>{
-            state.isLoading = true;
-        })
-        .addCase(editGallery.fulfilled,(state,action)=>{
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.isError = false;
-            state.gallarys = action.payload;
-        })
-        .addCase(editGallery.rejected,(state,action)=>{
-            state.isSuccess = false;
-            state.isError = true;
-            state.message = action.payload;
-            state.gallarys = null
-        })
+       
         .addCase(addGallery.pending,(state)=>{
             state.isLoading = true;
         })

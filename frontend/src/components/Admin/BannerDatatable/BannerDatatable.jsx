@@ -7,20 +7,15 @@ import Button from '@mui/material/Button';
 // import Switch from '@mui/material/Switch';
 import { toast } from 'react-toastify'
 import { useDispatch,useSelector} from 'react-redux';
-import { reset,deleteBanner } from '../../../features/auth/admin/banner/bannerSlice'
-import { FaPencilAlt } from "react-icons/fa";
+import {deleteBanner,reset } from '../../../features/auth/admin/banner/bannerSlice'
 // import {getBanner} from '../../../features/auth/admin/banner/bannerService'
 
 function BannerDatatable() {
     const dispatch = useDispatch()
 
     const [Banner, setBanner] = useState([])
-    const deletebr = (bannerId) => {
-        
-        dispatch(deleteBanner(bannerId))
-
-    }
-    const { banners, isError,isModified,isDeleted, isSuccess, message } = useSelector((state) => state.getbannerr);
+   
+    const { banners, isError,isModified, isSuccess, message } = useSelector((state) => state.getbannerr);
     
     
     useEffect(() => {
@@ -30,16 +25,10 @@ function BannerDatatable() {
         }
         dispatch(reset());
 
-    }, [banners, isError, isSuccess,isDeleted,isModified, message, dispatch]);
+    }, [banners, isError, isSuccess,isModified, message, dispatch]);
       console.log("Bannererrr",banners)
     const columns = [
-        {field:"", headerName:"No",width:50},
-        {field: '_id', headerName: 'id', width: 170,renderCell:(params)=>{
-            return(
-                <>{params.row._id}
-                </>
-            )
-        }},
+        
         {
             field: 'name', headerName: 'Name', width: 290, renderCell: (params) => {
                 return (
@@ -64,13 +53,9 @@ function BannerDatatable() {
             field: "action", headerName: "Action", width: "200" ,renderCell:(params) => {
                 return (
                     <>
-                       <div className="cellAction" >
-
-                            <Link to="editBanner"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteiconn" /></Button></Link>
-
-           </div>
+                     
                         <div className="cellActionn">
-                            <Button variant="outlined" size="small" color="error" onClick={() => { deletebr(params.row._id) }}><DeleteForever className="deleteiconn" /></Button>
+                            <button onClick={() => {dispatch(deleteBanner(params.row._id) )}}><DeleteForever className="deleteiconn" /></button>
                         </div>
                         </>
                    )
@@ -89,7 +74,6 @@ function BannerDatatable() {
                     getRowId={(row) => row._id}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
-                    checkboxSelection
                 />
             </div>
         </div>

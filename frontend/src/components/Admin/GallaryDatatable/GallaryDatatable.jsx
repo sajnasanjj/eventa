@@ -19,7 +19,10 @@ function GallaryDatatable() {
     const { gallarys, isError,isDeleted, isSuccess, message } = useSelector((state) => state.getgallery);
 
     useEffect(() => {
-        
+        if (isError) {
+            console.log("error");
+            toast.error(message)
+        }
         if (isSuccess && gallarys) {
             setGallary(gallarys)
         }
@@ -29,7 +32,6 @@ function GallaryDatatable() {
     console.log("Gallaryyyy", gallarys)
     const columns = [
         { field: "", headerName: "No", width: 50 },
-        { field: '_id', headerName: 'id', width: 170 },
         {
             field: 'name', headerName: 'Name', width: 290, renderCell: (params) => {
                 return (
@@ -54,12 +56,7 @@ function GallaryDatatable() {
             field: "action", headerName: "Action", width: "200", renderCell: (params) => {
                 return (
                     <>
-                        <div className="cellAction" >
-                            {/* <CustomizedDialogs id={params.id ? params.id:""}/> */}
-
-                            <Link to="editGallary"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteicon" /></Button></Link>
-
-                        </div>
+                       
                         <div className="cellAction">
                             <Button variant="outlined" size="small" color="error" onClick={() => { deletingAlbum(params.row._id) }}><DeleteForever className="deleteicon" /></Button>
                         </div>

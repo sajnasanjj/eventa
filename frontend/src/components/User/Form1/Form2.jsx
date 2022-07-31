@@ -1,32 +1,24 @@
 import React from "react";
 import './Form.css'
-import { useDispatch, useSelector } from 'react-redux'
-import { useEffect } from "react";
-import { toast } from "react-toastify";
+import { useDispatch} from 'react-redux'
 import {  useNavigate } from "react-router-dom";
-import { getOrder, reset } from '../../../features/auth/user/orderSlice'
+import { form2 } from '../../../features/auth/user/orderSlice'
+import Header from "../Header/Header";
 
 function Form2() {
-    const [Data, setData] = React.useState({
-        phonenumber: '',
-        iam: '',
-        bride: '',
-        groom: '',
-        days_event: '',
-        date: ''
-    })
-    const { bride, groom, iam, days_event, date, phonenumber } = Data
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const { orders, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
-    useEffect(() => {
-        if (isError) {
-            toast.error(message)
-        } if (isSuccess) {
-            navigate('/')
-        } dispatch(reset())
-    }, [orders, isLoading, isError, isSuccess, message, navigate, dispatch])
+    const [Data, setData] = React.useState({
+        address: '',
+        street: '',
+        city: '',
+        district: '',
+        postal_code:'',
+        country: ''
+    })
+    const { address,street,city,district,postal_code,country } = Data
+    
 
     const onChange = (event) => {
         setData((prevState) => ({
@@ -36,35 +28,53 @@ function Form2() {
     }
     const onSubmit = (event) => {
         event.preventDefault()
-        const orderData = {
-            bride, groom, days_event, date, phonenumber, iam
+        const Datas = {
+            address, street, city, district, postal_code, country
         }
-        dispatch(getOrder(orderData))
-
-
+        dispatch(form2(Datas))
+navigate("/Form3")
         const data = new FormData(event.currentTarget)
         console.log({
-            name: data.get('name'),
-            email: data.get('email'),
-            password: data.get('password'),
+           address: data.get('address'),
+            street: data.get('street'),
         })
 
     }
 
     return (
         <>
+        <Header/>
             <div className="container">
                 <div className="form-container">
-                    <div className="header">
-                        <h1>Get's Started</h1>
-                        <h6>Plan Your Event with Azaria Events.<br /> Its Make Your Day Special</h6>
-                    </div>
-
-                    <form action="" className="form-block" onSubmit={onSubmit}>
+                    <form className="form-block" onSubmit={onSubmit}>
                         <div className="full-width">
                             <div className="col-half">
-                                <label for="">Phone Number</label>
-                                <input type="tel" name="phonenumber" placeholder="+91 8891873123" value={phonenumber} onChange={onChange} className="input-field" />
+                                <label >Address</label>
+                                <input type="text" name="address" placeholder="Rose Villa" value={address} onChange={onChange} className="input-field" />
+                            </div>
+                            <div className="col-half">
+                                <label >Street</label>
+                                <input type="text" name="street" placeholder="Padamugal" value={street} onChange={onChange} className="input-field" required />
+                            </div>
+                        </div>
+                        <div className="full-width">
+                            <div className="col-half">
+                                <label >City</label>
+                                <input type="text" name="city" placeholder="Kakkanad" value={city} onChange={onChange} className="input-field" />
+                            </div>
+                            <div className="col-half">
+                                <label >District</label>
+                                <input type="text" name="district" placeholder="Ernakulam" value={district} onChange={onChange} className="input-field"  />
+                            </div>
+                        </div>
+                        <div className="full-width">
+                            <div className="col-half">
+                                <label >Postal code</label>
+                                <input type="text" name="postal_code" placeholder="679575" value={postal_code} onChange={onChange} className="input-field"  />
+                            </div>
+                            <div className="col-half">
+                                <label >Country</label>
+                                <input type="text" name="country" placeholder="India" value={country} onChange={onChange} className="input-field" />
                             </div>
                         </div>
                        

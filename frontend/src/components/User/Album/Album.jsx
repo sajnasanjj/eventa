@@ -2,6 +2,7 @@ import React,{useEffect} from "react";
 import './Album.scss'
 import {useSelector,useDispatch} from 'react-redux'
 import { getAlbum } from "../../../features/auth/admin/Album/albumSlice";
+import { Container } from "@material-ui/core";
 function Album() {
   const dispatch = useDispatch();
   const { albums } = useSelector((state) => state.allalbum);
@@ -11,9 +12,8 @@ function Album() {
   }, [dispatch]);
   return (
     <>
-
-      <div className="container m-5">
-          <div className="row album">
+      <Container>
+          <div className="row album mt-5 pt-3">
           {albums.map((input) => (
             <div className="col-md-4 albumItem">
               <img src={input.image} alt="" className="albumImg" />
@@ -22,10 +22,9 @@ function Album() {
               </div>
             </div>
           ))}
-          </div>
-      
-       
-      </div>
+        </div>
+
+      </Container>
     </>
   );
 }

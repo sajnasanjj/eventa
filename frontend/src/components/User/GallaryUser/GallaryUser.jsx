@@ -12,10 +12,10 @@ function GallaryUser() {
     console.log("sdfg",gallarys)
 
   return (
-    <div className="container">
-    <div className="featured">
+    <div className="galleryforUser p-5 mx-5">
+    <div className="row featuredd">
               {gallarys.map((input) => (
-            <div className="featuredItem">
+            <div className="col-md-3 featuredItem">
                 <img src={input.image} alt="" className="img" />
                 <div className="featuredTitles">
                     <h5>{input.name}</h5>

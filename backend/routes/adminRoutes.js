@@ -16,7 +16,7 @@ router.get('/getBanner', getBannerDetails)
 router.put('/editBanner/:id', editBanner)
 router.delete('/deleteBanner/:id', deleteBanner)
 //.....Gallery
-router.post('/addGallery', addGallery)
+router.post('/addGallery',addGallery)
 router.get('/getGallery', getGalleryDetails)
 router.put('/editGallery/:id', editGallery)
 router.delete('/deleteGallery/:id', deleteGallery)

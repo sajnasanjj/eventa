@@ -31,14 +31,7 @@ function ServiceDatatable() {
     console.log("The services", services)
     const columns = [
         // { field: "", headerName: "No", width: 50 },
-        {
-            field: '_id', headerName: 'id', width: 200, renderCell: (params) => {
-                return (
-                    <>{params.row._id}
-                    </>
-                )
-            }
-        },
+       
         {
             field: 'name', headerName: 'Name', width: 290, renderCell: (params) => {
                 return (
@@ -62,9 +55,7 @@ function ServiceDatatable() {
             field: "action", headerName: "Action", width: "200", renderCell: (params) => {
                 return (
                     <>
-                        {/* <div className="cellAction" >
-                            <Link to="editService"><Button variant="outlined" size="small" color="primary"><FaPencilAlt className="deleteicon" /></Button></Link>
-                        </div> */}
+                       
                         <div className="cellAction">
                             <Button variant="outlined" size="small" color="error" onClick={() => { deletingService(params.row._id) }}><DeleteForever className="deleteicon" /></Button>
                         </div>

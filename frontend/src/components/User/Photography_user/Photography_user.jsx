@@ -17,7 +17,7 @@ function srcset(image, size, rows = 1, cols = 1) {
     };
 }
 
-function Photography_user() {
+function PhotographyUser() {
   return (
   <>
 
@@ -139,4 +139,4 @@ const itemData = [
         cols: 2,
     }]
 
-export default Photography_user;
+export default PhotographyUser;

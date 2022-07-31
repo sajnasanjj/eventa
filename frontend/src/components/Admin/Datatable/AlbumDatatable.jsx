@@ -36,14 +36,7 @@ function AlbumDatatable() {
     console.log("The album", albums)
     const columns = [
         // {field: "", headerName: "No", width: 50 },
-        {
-            field: '_id', headerName: 'id', width: 200, renderCell: (params) => {
-                return (
-                    <>{params.row._id}
-                    </>
-                )
-            }
-        },
+       
         {
             field: 'name', headerName: 'Name', width: 290, renderCell: (params) => {
                 return (

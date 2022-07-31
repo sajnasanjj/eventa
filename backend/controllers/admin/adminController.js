@@ -139,12 +139,8 @@ const deleteBanner = asyncHandler(async(req,res)=>{
 
         res.status(200).json({ bannerId : data._id})
     }catch(error){
-        res.status(400).json(error)
+        res.json(error)
     }
-    res.json({
-        message:'Banner is deleted'
-    })
-            console.log("deleted");
 })
 
 const addGallery = asyncHandler(async(req,res)=>{
@@ -201,13 +197,8 @@ const deleteGallery = asyncHandler(async(req,res)=>{
 
         res.status(200).json({ gallaryId : data._id})
     }catch(error){
-        res.status(400).json(error)
+        res.json(error)
     }
-    res.json({
-        message:'Photo is deleted'
-    })
-            console.log("deleted");
-
 })
 
 const addService = asyncHandler(async(req,res)=>{
@@ -258,19 +249,12 @@ const editService = asyncHandler(async (req,res)=> {
 const deleteService = asyncHandler(async(req,res)=>{
     const serviceId = req.params.id;
     try{
-      
        const service = await Service.findById(serviceId)
        const data = await service.remove();
-
         res.status(200).json({ serviceId : data._id})
     }catch(error){
-        res.status(400).json(error)
+        res.json(error)
     }
-    res.json({
-        message:'service is deleted'
-    })
-            console.log("deleted");
-
 })
 const addAlbum = asyncHandler(async(req,res)=>{
     const { name,image} = req.body;
@@ -320,19 +304,12 @@ const editAlbum = asyncHandler(async (req,res)=> {
 const deleteAlbum = asyncHandler(async(req,res)=>{
     const albumId = req.params.id;
     try{
-      
        const album = await Album.findById(albumId)
        const data = await album.remove();
-
         res.status(200).json({ albumId : data._id})
     }catch(error){
-        res.status(400).json(error)
+        res.json(error);
     }
-    res.json({
-        message:'album is deleted'
-    })
-            console.log("deleted");
-
 })
 
 

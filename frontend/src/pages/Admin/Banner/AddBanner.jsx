@@ -3,7 +3,6 @@ import AdminHeader from "../../../components/Admin/AdminNavbar/AdminHeader";
 import Sidebar from "../../../components/Admin/AdminSidebar/Sidebar";
 import "./AddBanner.scss"
 import '../../../App.css'
-import { PhotoCamera } from "@material-ui/icons";
 import { Button } from "react-bootstrap";
 import { useDispatch, useSelector } from 'react-redux'
 import { addBanner, reset } from '../../../features/auth/admin/banner/bannerSlice'
@@ -32,7 +31,6 @@ function AddBanner() {
     const onChange = (event) => {
         setData((prevState) => ({
             ...prevState,
-            
             [event.target.name]: event.target.value,
         }))
 

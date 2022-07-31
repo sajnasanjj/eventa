@@ -1,4 +1,5 @@
 .serviceHeading{
+    
  text-align: center;
  justify-content: center;
  padding: 15px 0px;
@@ -6,49 +7,43 @@
   
 }
 
-.services{
+.servicess{
     width: 100%;
     display: flex;
-    margin: auto;
-    align-items: center;
-    text-align: center;
-    justify-content: space-between;
-    gap: 20px;
-    margin-bottom: 20px;
-   
+    justify-content: space-around;
+    border-style: none;
+    height: 100%;
+    
 
-    .serviceItem{
+    .serviceItemm{
         position: relative;
-        border-radius: 10px;
-        -webkit-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
-            -moz-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
-            box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
-            padding: 10px;
-            height: 15rem;
-                width:20rem;
-                margin: auto;
-        
-        
+        // border-radius: 10px;
+        width:17rem;
+        height:17rem;
+        // -webkit-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
+        //     -moz-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
+        //     box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
 
         .serviceImg{
-            width: 100%;
-            object-fit: cover;
-            height:100%;
+                    border-radius: 10px;
+                    width: 17rem;
+                        height: 17rem;
+
+            &:hover{
+                height:250px;
+                width:250px;
+            }
         }
 
-        .serviceTitles{
+        .serviceTitless{
             bottom: 20px;
             color: rgb(254, 253, 253);
-            text-align: center;
-            margin: auto;
-            align-items: center;
             position: absolute;
-            margin-left: auto;
-
-        }
+            text-align: center;
+             align-items: center;
+             align-content: center;
+             justify-content: center;
+             padding-left: 5rem;   
     }
-}
-.serviceImg{
-    width: 100px;
-    margin: auto;
+    }
 }

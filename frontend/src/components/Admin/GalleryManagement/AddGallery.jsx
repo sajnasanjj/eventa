@@ -1,10 +1,10 @@
-import { PhotoCamera } from "@material-ui/icons";
 import React, { useEffect } from "react";
 import AdminHeader from "../AdminNavbar/AdminHeader";
 import Sidebar from "../AdminSidebar/Sidebar";
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
+import { toast } from "react-toastify";
 import { imageUpload } from "../../../utils/cloudinaryImage";
 import { reset, addGallery } from "../../../features/auth/admin/Gallery/gallerySlice";
 import '../../../App.css'
@@ -16,7 +16,12 @@ function AddGallery() {
     const { isSuccess, isError, message, isLoading } = useSelector((state) => state.getgallery);
     useEffect(() => {
        
+        if (isError) {
+            console.log("error");
+            toast.error(message)
+        }
         if (isSuccess) {
+            console.log("All added");
             navigate('/adminlogin/gallary')
         }
         dispatch(reset())
@@ -25,7 +30,7 @@ function AddGallery() {
     const [Data, setData] = React.useState({ name: '' });
 
     const { name } = Data;
-    const [pic, setPic] = React.useState('');
+    const [pic,setPic] = React.useState('');
     const { image } = pic;
     const onChange = (event) => {
         setData((prevState) => ({
@@ -34,7 +39,7 @@ function AddGallery() {
         }))
 
     }
-    const postDetails = async (pics) => {
+    const postDetails = async(pics) => {
         try {
             const data = await imageUpload(pics);
             setPic(data.secure_url.toString());
@@ -43,8 +48,8 @@ function AddGallery() {
         }
     };
     const handleSubmit = (event) => {
-
         event.preventDefault();
+
 
         const gallaryData = {
             name,
@@ -52,7 +57,6 @@ function AddGallery() {
         }
 
         dispatch(addGallery(gallaryData))
-
         const datas = new FormData(event.currentTarget)
         console.log({
             image: datas.get('image'),

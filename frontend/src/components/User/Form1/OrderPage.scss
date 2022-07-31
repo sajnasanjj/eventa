@@ -1,0 +1,54 @@
+.form {
+  display: grid;
+  gap: 2em;
+}
+
+.form__radios {
+  display: grid;
+  gap: 1em;
+}
+
+.form__radio {
+  align-items: center;
+  background-color: #fefdfe;
+  border-radius: 1em;
+  box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
+  display: flex;
+  padding: 1em;
+}
+.details-orderPage{
+    background-color: var(--color-background);
+        display: grid;
+        font-family: var(--font-family-base);
+        line-height: 1.5;
+        margin: 0;
+        background-color: #fbf6f7;
+            background-image: linear-gradient(to bottom, #fbf6f7, #fff);
+            box-shadow: 0 0 1em rgba(0, 0, 0, 0.0625);
+            overflow: auto;
+}
+
+.button {
+    align-items: center;
+    background-color: var(--color-primary);
+    border-radius: 999em;
+    color: rgb(10, 10, 10);
+    font-size: larger;
+    display: flex;
+    gap: 0.5em;
+    justify-content: center;
+    padding-block: 0.75em;
+    padding-inline: 1em;
+    transition: 0.3s;
+}
+
+.button:focus,
+.button:hover {
+    background-color: #070707;
+    color: white;
+    font-size: larger;
+}
+
+.button--full {
+    inline-size: 40%;
+}

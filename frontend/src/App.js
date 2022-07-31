@@ -28,9 +28,15 @@ import AddAlbum from './components/Admin/AlbumManagement/AddAlbum'
 import Enquire from './pages/User/Enquire/Enquire'
 import Form2 from './components/User/Form1/Form2'
 import ServiceDetails from './components/User/ServiceDetails/ServiceDetails'
-import Photography_user from './components/User/Photography_user/Photography_user'
+import PhotographyUser from './components/User/Photography_user/Photography_user'
 import CateringUser from './components/User/Catering_user/Catering-user'
 import Decoration from './components/User/Decorations/Decoration'
+import Form3 from './components/User/Form1/Form3'
+import Checkout from './components/User/Form1/Checkout'
+import Form4 from './components/User/Form1/Form4'
+import Form5 from './components/User/Form1/Form5'
+import Form6 from './components/User/Form1/Form6'
+import CartItem from './components/User/Form1/CartItem'
 // import Services from './components/User/Services/Services'
 // import Services from './pages/Admin/OurService/Services'
 const Album = React.lazy(() => import('./components/User/Album/Album'))
@@ -86,18 +92,28 @@ function App() {
                 <Route path="album" element={<Album />} />
                 <Route path="review" element={<Review />} />
               </Route>
-              <Route path="serviceDetails" element={<ServiceDetails />}>
-                <Route index element={<Photography_user />} />
-                <Route path="catering_user" element={<CateringUser />} />
-                <Route path="decorations" element={<Decoration />} />
+              <Route path="serviceDetails/Photograpy" element={<ServiceDetails />}>
+                <Route index element={<PhotographyUser />} />
               </Route>
-              <Route path="enquire" element={<Enquire />} />
-              <Route path="Form2" element={<Form2 />} />
-            </Route>
+              <Route path="serviceDetails/Catering" element={<ServiceDetails />}>
+                <Route index element={<CateringUser />} />
+                 </Route>
+                <Route path="serviceDetails/Decor" element={<ServiceDetails />}>
+                <Route index element={<Decoration />} />
+                 </Route>
+                <Route path="photos/enquire" element={<Enquire />} />
+                <Route path="photos/Form2" element={<Form2 />} />
+                <Route path="Form3" element={<Form3 />} />
+                <Route path="Form4" element={<Form4 />} />
+                <Route path="Form5" element={<Form5 />} />
+                <Route path="Form6" element={<Form6 />} />
+                <Route path="checkout" element={<Checkout/>} />
+                <Route path="cartItem" element={<CartItem />}/>
+              </Route>
           </Routes>
         </Router>
       </Suspense>
-      <ToastContainer />
+      <ToastContainer/>
     </>
   )
 }

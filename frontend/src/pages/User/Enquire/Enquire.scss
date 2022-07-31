@@ -5,12 +5,12 @@
         -moz-box-shadow: 1px 0px 20px 5px rgba(129, 127, 127, 0.52);
         box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
         
-.sub{
-    // -webkit-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.75);
-        // -moz-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
-        box-shadow: 1px 0px 50px 5px rgba(164, 161, 161, 0.72);
-        font-size: large;
-}
+// .sub{
+//     // -webkit-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.75);
+//         // -moz-box-shadow: 1px 0px 20px 5px rgba(0, 0, 0, 0.52);
+//         box-shadow: 1px 0px 50px 5px rgba(164, 161, 161, 0.72);
+//         font-size: large;
+// }
 &:hover{
     cursor: pointer;
 }
@@ -19,4 +19,13 @@ h3{
     &:hover{
         font-style: italic;
     }
+}
+
+.header {
+    padding: 25px 40px;
+    border-bottom: 1px solid #ccc;
+    background: url(../../../Images/pexels-photo-6027872.jpeg);
+    background-position: 0 50%;
+    background-size: cover;
+    color: black;
 }

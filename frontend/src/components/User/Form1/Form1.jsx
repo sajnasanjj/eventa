@@ -1,108 +1,102 @@
 import React from "react";
 import './Form.css'
-import {useDispatch,useSelector} from 'react-redux'
-import { useEffect } from "react";
-import { toast } from "react-toastify";
+import {useDispatch} from 'react-redux'
 import { useNavigate } from "react-router-dom";
-import {getOrder,reset} from '../../../features/auth/user/orderSlice'
-import { LabelImportant } from "@material-ui/icons";
+import {form1} from '../../../features/auth/user/orderSlice'
+
 
 function Form1() {
-    const [Data, setData] = React.useState({
-        phonenumber:'',
-        iam:'',
-        bride:'',
-        groom:'',
-        days_event:'',
-        date:''
-})
-    const {bride,groom,iam,days_event,date,phonenumber} = Data
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const {orders,isLoading,isError,isSuccess,message} = useSelector ((state) => state.allorder)
-    
-    useEffect(()=>{
-        if(isError){
-            toast.error(message)
-            console.log(message);
-        }if(isSuccess){
-            navigate('/Form2')
-        }dispatch(reset())
-    }, [orders, isLoading, isError, isSuccess, message,navigate,dispatch])
-    
-    const onChange=(event)=>{
-         setData((prevState)=>({
+    const [Data, setData] = React.useState({
+        phonenumber: '',
+        iam: '',
+        bride: '',
+        groom: '',
+        guests:'',
+        start_date:'',
+        end_date:''
+    })
+    const { bride, groom, iam, guests, phonenumber,start_date,end_date } = Data
+    const onChange = (event) => {
+        setData((prevState) => ({
             ...prevState,
-            [event.target.name] : event.target.value
-         }))
-   }
-   const onSubmit=(event)=>{
+            [event.target.name]: event.target.value
+        }))
+    }
+    
+    const onSubmit=(event)=>{
     event.preventDefault()
     const orderData = {
-        bride,groom,days_event,date,phonenumber,iam
+        bride, groom, guests, phonenumber, iam, start_date, end_date,
     }
-    dispatch(getOrder(orderData))
 
-   
+    dispatch(form1(orderData))
+    navigate('/photos/Form2');  
     const data = new FormData(event.currentTarget)
     console.log({
         bride: data.get('bride'),
         groom: data.get('groom'),
         phonenumber: data.get('phonenumber'),
+        iam:data.get('iam'),
+        start_date:data.get('start_date'),
     })
 
-   }
+   };
 
   return (
     <>
           <div className="container">
               <div className="form-container">
-                  <div className="header">
-                      <h1>Get's Started</h1>
-                      <h6>Plan Your Event with Azaria Events.<br/> Its Make Your Day Special</h6>
-                  </div>
+                 
 
                   <form className="form-block" onSubmit={onSubmit}>
                       <div className="full-width">
                           <div className="col-half">
-                              <LabelImportant>Phone Number</LabelImportant>
-                              <input type="tel" name="phonenumber" placeholder="+91 8891873123" value={phonenumber} onChange={onChange} className="input-field" />
+                              <label >Phone Number</label>
+                              <input type="tel" name="phonenumber" placeholder="+91 8891873123" value={phonenumber} onChange={onChange} className="input-field" required/>
                           </div>
                           <div className="col-half">
-                              <label >I am</label>
-                              <label className="radio-inline">
-                                  <input type="radio" name="inlineRadioOptions" id="inlineRadio1" onChange={onChange} /> Bride
+                              <label>I am</label>
+                              <label className="radio-inline" value={iam}>
+                                  <input type="radio" name="iam" id="inlineRadio1" onChange={onChange} value={'Bride'} /> Bride
                               </label>
-                              <label className="radio-inline">
-                                  <input type="radio" name="inlineRadioOptions" id="inlineRadio2" onChange={onChange} /> Groom
+                              <label className="radio-inline" value={iam}>
+                                  <input type="radio" name="iam" id="inlineRadio2" onChange={onChange} value={'Groom'}/> Groom
                               </label>
-                              <label className="radio-inline">
+                              {/* <label className="radio-inline">
                                   <input type="radio" name="inlineRadioOptions" id="inlineRadio2" onChange={onChange} /> Relative
                               </label>
                               <label className="radio-inline">
                                   <input type="radio" name="inlineRadioOptions" id="inlineRadio2" onChange={onChange} /> Friend
-                              </label>
+                              </label> */}
                           </div>
                       </div>
                       <div className="full-width">
                           <div className="col-half">
-                              <label >Bride</label>
-                              <input type="text" name="bride" placeholder="John" value={bride} onChange={onChange} className="input-field" />
+                              <label>Bride</label>
+                              <input type="text" name="bride" placeholder="John" value={bride} onChange={onChange} className="input-field" required />
                           </div>
                           <div className="col-half">
                               <label >Groom</label>
-                              <input type="text" name="groom" placeholder="Smith" value={groom} onChange={onChange} className="input-field" />
+                              <input type="text" name="groom" placeholder="Smith" value={groom} onChange={onChange} className="input-field" required />
                           </div>
-                      </div>
+                      </div><br />
                       <div className="full-width">
                           <div className="col-half">
-                              <label for="date">Date of Event</label>
-                              <input type="date" name="date" placeholder="Smith" value={date} onChange={onChange} className="input-field" />
+                                 <div className="col-half">
+                                  <label >Start Date</label>
+                                  <input type="date" name="start_date" id="start_date" value={start_date} placeholder="Start  Date" onChange={onChange} className="input-field" />
+                                 </div>
+                              <div className="col-half">
+                                  <label >Ending Date</label>
+                                  <input type="date" name="end_date" id="end_date" value={end_date} placeholder="End  Date" onChange={onChange} className="input-field" />
+                              </div>
+                                
                           </div>
                           <div className="col-half">
-                              <label for="number">Number of Days</label>
-                              <input type="number" name="days_event" placeholder="3" value={days_event} onChange={onChange} className="input-field" />
-
+                              <label >Number of Guests</label><br />
+                              <input type="number" name="guests" placeholder="500" value={guests} onChange={onChange} className="input-field" />
                           </div>
                       </div>
                      

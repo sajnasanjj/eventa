@@ -1,22 +1,20 @@
-import axios from 'axios'
-
-const ADMIN_API_URI = '/adminlogin/adminlogin'
+import * as api from '../../api/admin'
 
 const adminregister = async (adminData) => {
   console.log('admin', adminData)
-  const response = await axios.post(ADMIN_API_URI, adminData)
-  if (response.data) {
-    localStorage.setItem('admin', JSON.stringify(response.data))
+  const {data} = await api.adminlogin(adminData)
+  if (data) {
+    localStorage.setItem('admin', JSON.stringify(data))
   }
-  return response.data
+    return data
 }
 
 const adminlogin = async (adminData) => {
-  const response = await axios.post(ADMIN_API_URI, adminData)
-  if (response.data) {
-    localStorage.setItem('admin', JSON.stringify(response.data))
+  const {data}= await api.adminlogin(adminData)
+  if (data) {
+    localStorage.setItem('admin', JSON.stringify(data))
   }
-  return response.data
+  return data
 }
 const adminlogout = () => {
   localStorage.removeItem('admin')

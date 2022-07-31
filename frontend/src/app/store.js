@@ -19,5 +19,10 @@ export const store = configureStore({
     allservice: getServiceReducer,
     allalbum: getAlbumReducer,
     allorder: getOrderReducer,
+   
   },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 })

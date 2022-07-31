@@ -17,7 +17,7 @@ function About() {
     </div>
           <h2 className="about">Our Team Members</h2>
 
-    <div className="container">
+    <div className="containerrrr">
               <div className="member-details"> <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYxjRZeZkUi__dbo7qlh3_hL-OUiyC7WwWcA&usqp=CAU" alt="" className="member" /> 
               <h5>Founder</h5>
               <h6>Asif Ali</h6>

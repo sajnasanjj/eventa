@@ -32,12 +32,11 @@ function Datatable() {
     }, [users, isError, isSuccess, message, dispatch, isModified]);
     const columns = [
         // {field:"", headerName:"No",width:50},
-        { field: '_id', headerName: 'User-id', width: 230 },
         {
             field: 'name', headerName: 'User', width: 200, renderCell: (params) => {
                 return (
                     <div className='cellWithImg'>
-                        <img src={params.row.img} alt="" className="cellImg" />
+                        {/* <img src={params.row.img} alt="" className="cellImg" /> */}
                         {params.row.name}
                     </div>
                 )
@@ -105,7 +104,6 @@ function Datatable() {
                     getRowId={(row) => row._id}
                     pageSize={5}
                     rowsPerPageOptions={[5]}
-                // checkboxSelection
                 />
             </div>
         </div>

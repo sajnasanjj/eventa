@@ -1,23 +1,17 @@
-.SubHeading {
-    display: flex;
-    text-align: center;
-    margin: 1.5rem 0rem;
+.contain{
+    align-items: center;
     justify-content: center;
-    .name {
-        font-size: xx-large;
-        color: rgb(11, 11, 11);
-        text-decoration: none;
-
-        &:hover {
-            color: black;
-            font-weight: bold;
-            font-style: italic;
-        }
-    }
-    .Line {
-        font-size: xx-large;
+    text-align: center;
+    color: black;
+    text-decoration: none;
+    margin-top: 10px;
+    .text{
         color: black;
-        text-decoration: none;
-        margin: 0px 0.5rem;
+        text-decoration-line: none;
+    }
+    &:hover{
+        color: white;
+        text-decoration-line: none;
     }
 }
+

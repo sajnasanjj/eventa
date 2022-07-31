@@ -249,14 +249,6 @@ input {
     border: 1px solid #cfcfcf;
 }
 
-.header {
-    padding: 25px 40px;
-    border-bottom: 1px solid #ccc;
-    background: url(../../../Images/pexels-photo-8687026.jpeg);
-    background-position: 0 50%;
-    background-size: cover;
-    color: black;
-}
 
 .form-container {
     width: 100%;

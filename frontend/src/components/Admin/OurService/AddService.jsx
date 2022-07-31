@@ -1,4 +1,3 @@
-import { PhotoCamera } from "@material-ui/icons";
 import React,{useEffect} from "react";
 import AdminHeader from "../AdminNavbar/AdminHeader";
 import Sidebar from "../AdminSidebar/Sidebar";

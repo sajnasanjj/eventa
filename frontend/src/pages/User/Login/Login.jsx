@@ -30,6 +30,7 @@ export default function Login() {
   useEffect(() => {
     if (isError) {
       toast.error(message)
+      console.log(message);
     }
     if (isSuccess || user) {
       navigate('/photos')
@@ -103,11 +104,11 @@ export default function Login() {
                 }}
               >
                 <h5>
-                  Eventa Wedding Plannar
+                  Wedeve
                 </h5>
-                <Typography component="h1" variant="h5">
+                {/* <Typography component="h1" variant="h5">
                   <FaUser /> Login
-                </Typography>
+                </Typography> */}
 
                 <Box
                   component="form"

@@ -2,8 +2,9 @@ import axios from 'axios';
 
 import { BACKEND_URL } from '../constants/axios';
 const API = axios.create ({ baseURL:`${BACKEND_URL}`,withCredentials:true }) ;
-
+ 
 export const registerAdmin = () => API.post ('/adminlogin/registerAdmin');
+export const adminlogin = (adminData)=>API.post('/adminlogin/adminlogin',adminData);
 export const getUser = () => API.get ('/adminlogin/getUser');
 export const changeUserStatus = (userId) => API.put (`/adminlogin/changeUserStatus/${userId}`);
 

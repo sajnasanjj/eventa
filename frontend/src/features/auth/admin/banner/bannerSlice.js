@@ -8,7 +8,6 @@ const initialState ={
     isSuccess:false,
     isLoading:false,
     isModified:false,
-    isDeleted:false,
     message:''
 
 }
@@ -39,8 +38,6 @@ export const editBanner = createAsyncThunk('editbanner',async(id,thunkAPI)=>{
 
 export const deleteBanner = createAsyncThunk('deleteBanner',async(bannerId,thunkAPI)=>{
     try{
-        console.log("delte",bannerId)
-
         return await bannerService.deleteBanner(bannerId);
 
     }catch(error){
@@ -113,19 +110,20 @@ const bannerSlice = createSlice({
 
         .addCase(deleteBanner.pending,(state)=>{
             state.isLoading = true;
-            state.isDeleted = false;
         })
         .addCase(deleteBanner.fulfilled,(state,action)=>{
            const itemId = action.payload.gallaryId;
         console.log("itemId", itemId);
-        state.getbannerr.banners = state.getbannerr.banners.filter(
+        state.banners = state.banners.filter(
           (item) => item._id !== itemId
         );
-
+            state.isLoading = false
+            state.isSuccess = true
         })
         .addCase(deleteBanner.rejected,(state,action)=>{
             state.isError = true;
             state.isLoading=false;
+            state.isSuccess=false;
             state.message = action.payload;
             state.banners= null
         })

@@ -1,21 +1,18 @@
-import axios from 'axios'
-
-const API_URL = '/register'
-const API_URI = '/logins'
+import * as api from '../../api/user'
 
 const register = async (userData) => {
-  const response = await axios.post(API_URL, userData)
-  if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data))
+  const {data} = await api.register(userData)
+  if (data) {
+    localStorage.setItem('user', JSON.stringify(data))
   }
-  return response.data
+  return data
 }
 const login = async (userData) => {
-  const response = await axios.post(API_URI, userData)
-  if (response.data) {
-    localStorage.setItem('user', JSON.stringify(response.data))
+  const {data} = await api.login(userData)
+  if (data) {
+    localStorage.setItem('user', JSON.stringify(data));
   }
-  return response.data
+  return data
 }
 
 const logout = () => {

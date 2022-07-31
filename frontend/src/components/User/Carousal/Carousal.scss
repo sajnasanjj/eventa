@@ -1,23 +1,119 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+// .bannerHead{
+//     max-width: 100%;
+//     max-height: max-content;
+    
+// }
 
-.enquire{
-    border: 1px solid white;
-    background-color: black;
-    font-size: larger;
-    padding: 8px;
-    border-radius: 20%;
-    &:hover{
-        color: black;
-        background-color: white;
-        border: 1px solid black;
-        
-        .Link{
-     
-            color: rgb(240, 238, 238);
-            &:hover{
-                color: black;
-                font-weight: bold;
-            }
-        }
+// .title-on-banner{
+//     margin-bottom: 50px;
+// max-width: 100%;
+//     max-height: 100%;
+//     opacity: 0.7;
+//     // border-radius: 80%;
+    
+//     background-color: White;
+// }
 
+
+.wedeve-head {
+    text-align: center;
+    background: linear-gradient(141deg, #ccc 25%, #eee 40%, #ddd 55%);
+    color: #555;
+    opacity: 0.6;
+    font-family: 'Roboto';
+    font-weight: 300;
+    font-size: 32px;
+    height: 30vh;
+    padding:20px 20px 20px 20px;
+    overflow: hidden;
+    -webkit-backface-visibility: hidden;
+    -webkit-perspective: 10000;
+    -webkit-transform: translate3d(0, 0, 0);
+}
+
+.wedeve-head {
+    display: inline-block;
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+.wedeve-head:first-of-type {
+    /* For increasing performance 
+                       ID/Class should've been used. 
+                       For a small demo 
+                       it's okaish for now */
+    animation: showup 7s infinite;
+}
+
+.wedeve-head:last-of-type {
+    width: 0px;
+    animation: reveal 7s infinite;
+}
+
+.wedeve-head:last-of-type span {
+    // margin-left: -355px;
+    animation: slidein 7s infinite;
+}
+
+@keyframes showup {
+    0% {
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes slidein {
+    0% {
+        margin-left: -800px;
+    }
+
+    20% {
+        margin-left: -800px;
+    }
+
+    35% {
+        margin-left: 0px;
+    }
+
+    100% {
+        margin-left: 0px;
+    }
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        width: 0px;
+    }
+
+    20% {
+        opacity: 1;
+        width: 0px;
+    }
+
+    30% {
+        width: 500px;
+    }
+
+    80% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+        width: 500px;
     }
 }
